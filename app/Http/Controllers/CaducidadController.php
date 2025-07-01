@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use App\Http\Resources\CaducidadResource;
+use App\Models\Caducidad;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+
+class CaducidadController extends Controller
+{
+    public function index(Request $request)
+    {//caducidad_access
+        Gate::authorize('caducidad_access');
+
+        // Cargar relación con product y inventory
+        //    $DetalleVentasQuery = DetalleVenta::query();
+        $CaducidadQuery = Caducidad::with('producto', 'notacompra', 'detallecompra');
+        // Aplicar filtro de búsqueda
+        $this->applySearch($CaducidadQuery, $request->search);
+
+        // Obtener los detalles del inventario con las relaciones cargadas
+        $caducidades = CaducidadResource::collection($CaducidadQuery->paginate(5));
+        // Dump the data to check if it's correctly loaded
+        // dd($devoluciones);
+
+        return inertia('Caducidad/Index', [
+            'caducidades' => $caducidades,
+            'search' => $request->search ?? '',
+        ]);
+    }
+
+
+    protected function applySearch($query, $search)
+    {
+        return $query->when($search, function ($query, $search) {
+            $query->where('name', 'like', '%' . $search . '%');
+        });
+    }
+}
