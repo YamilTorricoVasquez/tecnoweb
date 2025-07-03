@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import HeaderArea from '@/Components/Header/HeaderArea.vue'
 import SidebarArea from '@/Components/Sidebar/SidebarArea.vue'
+
 </script>
 
 <template>
@@ -14,6 +15,7 @@ import SidebarArea from '@/Components/Sidebar/SidebarArea.vue'
     <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
       <!-- ===== Header Start ===== -->
       <HeaderArea />
+    
       <!-- ===== Header End ===== -->
 
       <!-- ===== Main Content Start ===== -->

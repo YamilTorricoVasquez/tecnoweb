@@ -7,7 +7,7 @@ import { ref } from 'vue';
 import SelectGroupTwo from '@/Components/Forms/SelectGroup/SelectGroupTwo.vue'
 import InputError from '@/Components/InputError.vue';
 
-import { Head, useForm, usePage, router } from '@inertiajs/vue3';
+import {Link, Head, useForm, usePage, router } from '@inertiajs/vue3';
 
 defineProps({
     devolucion: {
@@ -60,25 +60,31 @@ const updateDevolucion = () => {
 
 <template>
 
-    <Head title="Devoluciones" />
+    <Head title="Editar Devolucion" />
     <AuthenticatedLayout>
         <DefaultLayout>
             <div class="grid grid-cols-1">
                 <div class="flex flex-col ">
+                    <Link
+  :href="route('devoluciones.index')"
+  class="inline-flex items-center rounded bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300 mb-4"
+>
+  ← Volver al listado
+</Link>
                     <!-- Contact Form Start -->
-                    <DefaultCard cardTitle="Edit Devolucion">
+                    <DefaultCard cardTitle="Editar Devolucion">
                         <form @submit.prevent="updateDevolucion">
                             <div class="p-6.5">
 
                                 <div>
                                     <InputGroup v-model="form.fecha_caducidad" label="Fecha de caducidad" type="date"
-                                        placeholder="Enter product name" customClasses="mb-4.5" />
+                                         customClasses="mb-4.5" />
 
                                     <InputError :message="form.errors.fecha_caducidad" class="mt-2" />
                                 </div>
                                 <div>
                                     <InputGroup v-model="form.cantidad" label="Cantidad" type="integer"
-                                        placeholder="Introduzca una descripcion" customClasses="mb-4.5" />
+                                        placeholder="Introduzca una cantidad" customClasses="mb-4.5" />
 
                                     <InputError :message="form.errors.cantidad" class="mt-2" />
                                 </div>
@@ -143,7 +149,7 @@ const updateDevolucion = () => {
 
                                 <button type="submit"
                                     class="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
-                                    Update
+                                    Editar
                                 </button>
                             </div>
                         </form>

@@ -74,22 +74,27 @@ const deleteUser = (usersId) => {
         }
     });
 };
+const capitalizeWords = (input) => {
+  return input.replace(/\b\w/g, (char) => char.toUpperCase());
+};
 </script>
 
 <template>
 
-    <Head title="Users List" />
+    <Head title="Lista de usuarios" />
     <AuthenticatedLayout>
         <DefaultLayout>
             <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                 <div class="pb-4 px-5">
                     <div class="flex flex-col justify-between sm:flex-row mt-4">
-                        <InputGroup v-model="search" type="text" autocomplete="off" placeholder="Buscar..." autofocus
+                        <InputGroup v-model="search" 
+                        @input="search = capitalizeWords(search)"
+                        type="text" autocomplete="off" placeholder="Buscar..." autofocus
                             customClasses="block" />
                         <div class="mt-4 sm:ml-16 sm:flex-none">
                             <Link v-if="page.props.can.crear_medicamentos" :href="route('users.create')"
                                 class="inline-flex items-center justify-center rounded bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700">
-                            Nuevo usuario
+                            Registrar usuario
                             </Link>
                         </div>
                     </div>
@@ -124,11 +129,11 @@ const deleteUser = (usersId) => {
                         <!-- Table Rows -->
                         <Link v-if="page.props.can.editar_medicamentos" :href="route('users.edit', user.id)"
                             class="text-indigo-600 hover:text-indigo-900">
-                        Edit
+                        Editar
                         </Link>
                         <button v-if="page.props.can.crear_medicamentos" @click="deleteUser(user.id)"
                             class="ml-2 text-indigo-600 hover:text-indigo-900">
-                            Delete
+                            Eliminar
                         </button>
                     </div>
 

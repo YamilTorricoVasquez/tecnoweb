@@ -151,11 +151,11 @@ const deleteDevolucion = (devolucionId) => {
                     <div class="col-span-2 flex items-center">
                         <Link v-if="page.props.can.editar_devoluciones" :href="route('devoluciones.edit', devolucion.id)"
                             class="text-indigo-600 hover:text-indigo-900">
-                        Edit
+                        Editar
                         </Link>
                         <button v-if="page.props.can.eliminar_devoluciones" @click="deleteDevolucion(devolucion.id)"
                             class="ml-2 text-indigo-600 hover:text-indigo-900">
-                            Delete
+                            Eliminar
                         </button>
 
                     </div>

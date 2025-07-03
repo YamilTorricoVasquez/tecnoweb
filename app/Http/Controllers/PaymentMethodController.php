@@ -28,7 +28,7 @@ class PaymentMethodController extends Controller
     protected function applySearch($query, $search)
     {
         return $query->when($search, function ($query, $search) {
-            $query->where('name', 'like', '%' . $search . '%');
+            $query->where('metodo', 'like', '%' . $search . '%');
         });
     }
     public function create()

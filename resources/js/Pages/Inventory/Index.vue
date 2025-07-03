@@ -74,7 +74,7 @@ const deleteInventory = (inventoryId) => {
 
 <template>
 
-    <Head title="Inventory List" />
+    <Head title="Lista de Inventarios" />
     <AuthenticatedLayout>
         <DefaultLayout>
             <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -88,7 +88,7 @@ const deleteInventory = (inventoryId) => {
                   inline-flex items-center justify-center rounded
                 bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm 
                   hover:bg-indigo-700">
-                            Agregar inventorio
+                            Registrar Inventario
                             </Link>
                         </div>
 
@@ -116,11 +116,11 @@ const deleteInventory = (inventoryId) => {
                     <div class="col-span-1 flex items-center">
                         <Link v-if="page.props.can.editar_inventarios" :href="route('inventories.edit', inventorie.id)"
                             class="text-indigo-600 hover:text-indigo-900">
-                        Edit
+                        Editar
                         </Link>
                         <button v-if="page.props.can.eliminar_inventarios" @click="deleteInventory(inventorie.id)"
                             class="ml-2 text-indigo-600 hover:text-indigo-900">
-                            Delete
+                            Eliminar
                         </button>
 
                     </div>

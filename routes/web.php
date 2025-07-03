@@ -19,6 +19,7 @@ use App\Http\Controllers\PaymentMethodController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ReasonController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VisitaController;
 use App\Models\Category;
 use App\Models\PaymentMethod;
 use App\Models\Product;
@@ -32,8 +33,9 @@ use Inertia\Inertia;
 
 
 
-
-
+Route::get('/medicamentos', [ProductController::class, 'apiIndex']);
+Route::post('/visitas', [VisitaController::class, 'incrementar']);
+Route::get('/visitas', [VisitaController::class, 'obtener']);
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -101,8 +103,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('detallecantidadventas', DetalleCantidadVentaController::class)->parameters([
         'detallecantidadventas' => 'detallecantidadventa',
     ]);
-
+    Route::post('/products/multiple', [ProductController::class, 'storeMultiple'])->name('products.storeMultiple');
     //Route::resource('register', RegisteredUserController::class);
+  
+    Route::post('/detallecompras/multiple', [\App\Http\Controllers\DetalleCompraController::class, 'storeMultiple'])->name('detallecompras.storeMultiple');
+    Route::post('/detalleventas/multiple', [DetalleVentaController::class, 'storeMultiple'])->name('detalleventas.storeMultiple');
 });
 
 require __DIR__ . '/auth.php';

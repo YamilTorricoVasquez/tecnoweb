@@ -5,6 +5,8 @@ import { Head, useForm, usePage } from "@inertiajs/vue3";
 import InputError from "@/Components/InputError.vue";
 import DefaultCard from '@/Components/Forms/DefaultCard.vue'
 import InputGroup from '@/Components/Forms/InputGroup.vue'
+import { Link } from '@inertiajs/vue3';
+
 
 const supplier = usePage().props.supplier;
 
@@ -30,19 +32,25 @@ const updateSupplier = () => {
 
 <template>
 
-    <Head title="Edit Supplier" />
+    <Head title="Editar Proveedores" />
 
     <AuthenticatedLayout>
         <DefaultLayout>
             <div class="grid grid-cols-1">
                 <div class="flex flex-col">
-                    <DefaultCard cardTitle="Edit Supplier">
+                    <Link
+  :href="route('suppliers.index')"
+  class="inline-flex items-center rounded bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300 mb-4"
+>
+  ← Volver al listado
+</Link>
+                    <DefaultCard cardTitle="Editar proveedores">
                         <form @submit.prevent="updateSupplier">
                             <div class="p-6.5">
 
                                 <div class="mb-4.5">
                                     <InputGroup v-model="form.name" label="Nombre del proveedor" type="text"
-                                        placeholder="Enter supplier name" customClasses="mb-4.5" />
+                                        placeholder="Ingrese el nombre del proveedor" customClasses="mb-4.5" />
                                     <InputError :message="form.errors.name" class="mt-2" />
                                 </div>
                                 <div class="mb-4.5">
@@ -57,7 +65,7 @@ const updateSupplier = () => {
                                 </div>
                                 <button type="submit"
                                     class="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
-                                    Save
+                                    Editar
                                 </button>
                             </div>
                         </form>

@@ -8,7 +8,7 @@ import SelectGroupTwo from '@/Components/Forms/SelectGroup/SelectGroupTwo.vue'
 import InputError from '@/Components/InputError.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'; // Verifica la ruta
 
-import { Head, useForm } from '@inertiajs/vue3';
+import {Link, Head, useForm } from '@inertiajs/vue3';
 
 defineProps({
     products: {
@@ -54,13 +54,19 @@ const createDevolucion = () => {
 
 <template>
 
-    <Head title="Devolucion" />
+    <Head title="Registrar Devolucion" />
     <AuthenticatedLayout>
         <DefaultLayout>
             <div class="grid grid-cols-1">
                 <div class="flex flex-col ">
+                    <Link
+  :href="route('devoluciones.index')"
+  class="inline-flex items-center rounded bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300 mb-4"
+>
+  ← Volver al listado
+</Link>
                     <!-- Contact Form Start -->
-                    <DefaultCard cardTitle="Agregar Devolucion">
+                    <DefaultCard cardTitle="Registrar Devolucion">
                         <form @submit.prevent="createDevolucion">
                             <div class="p-6.5">
 

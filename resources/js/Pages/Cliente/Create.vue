@@ -6,6 +6,7 @@ import InputError from '@/Components/InputError.vue';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { ref, computed } from 'vue';
 import { Head, useForm } from '@inertiajs/vue3';
+import axios from 'axios';
 
 // Props de entrada
 const props = defineProps({
@@ -136,28 +137,19 @@ const createClienteYNotaVenta = async () => {
     }
 
     try {
+        // 1. Crear cliente (JSON)
+        const responseCliente = await axios.post(route('clientes.store'), clienteForm.data());
+        const clienteId = responseCliente.data.cliente.id;
 
-        // Crear cliente
-        await clienteForm.post(route('clientes.store'), {
-            onSuccess: (response) => {
-                // Accede a los datos del cliente
-                const cliente = response.props.cliente;
+        if (clienteId) {
+            // 2. Crear nota de venta (JSON)
+            notaVentaForm.cliente_id = clienteId;
+            const responseNotaVenta = await axios.post(route('notaventas.store'), notaVentaForm.data());
+            const notaVentaId = responseNotaVenta.data.notaventa.id;
 
-                if (cliente) {
-                    const clienteId = cliente.id;
-                    notaVentaForm.cliente_id = clienteId;
-
-                    // Siempre creamos una nueva nota de venta
-                    notaVentaForm.post(route('notaventas.store'), {
-                        onSuccess: (responseNotaVenta) => {
-                            const nuevaNotaVentaId = responseNotaVenta.props.notaventa.id;
-                            // Crear detalles de venta con la nueva nota de venta
-                            crearDetalleVenta(nuevaNotaVentaId);
-                        }
-                    });
-                }
-            }
-        });
+            // 3. Crear detalles de venta (Inertia)
+            await crearDetalleVenta(notaVentaId);
+        }
     } catch (error) {
         console.error("Error al crear cliente o nota de venta:", error);
     }
@@ -166,19 +158,26 @@ const createClienteYNotaVenta = async () => {
 // Función para crear detalles de venta
 const crearDetalleVenta = async (notaVentaId) => {
     try {
-        for (const detalle of detalleVentaList.value) {
-            detalle.id_nota_venta = notaVentaId;
+        const detalles = detalleVentaList.value.map(detalle => ({
+            ...detalle,
+            id_nota_venta: notaVentaId
+        }));
 
-            // Crear cada detalle de venta
-            await useForm(detalle).post(route('detalleventas.store'));
-        }
-        console.log("Todos los detalles de venta fueron creados exitosamente.");
+        await axios.post(route('detalleventas.storeMultiple'), { detalles });
+
+        // Limpiar formularios y lista después de guardar
+        notaVentaForm.reset();
+        clienteForm.reset();
+        detalleVentaList.value = [{
+            id_producto: "",
+            cantidad: "",
+            precio_venta: 0,
+            total: 0
+        }];
     } catch (error) {
         console.error("Error al crear detalles de venta:", error);
     }
 };
-
-
 
 
 
@@ -190,7 +189,7 @@ const capitalizeWords = (input) => {
 
 <template>
 
-    <Head title="Detalle venta" />
+    <Head title="Realizar Ventas" />
     <AuthenticatedLayout>
         <DefaultLayout>
             <DefaultCard cardTitle="Realizar ventas">
@@ -242,7 +241,7 @@ const capitalizeWords = (input) => {
                                 class="hover:bg-gray-50 dark:hover:bg-gray-800">
                                 <td class="border border-stroke px-4 py-2">
                                     <select v-model="detalle.id_producto" @change="updateDetalleVenta(detalle)"
-                                        class="w-full rounded border py-2 px-3 dark:bg-gray-700 dark:text-white">
+                                        class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary">
                                         <option value="" disabled selected>Seleccionar producto</option>
                                         <option v-for="product in products" :key="product.id" :value="product.id">
                                             {{ product.name }}
@@ -255,14 +254,14 @@ const capitalizeWords = (input) => {
                                 </td>
                                 <td class="border border-stroke px-4 py-2">
                                     <input type="number" v-model="detalle.cantidad" @input="updateDetalleVenta(detalle)"
-                                        class="w-full rounded border py-2 px-3 dark:bg-gray-700 dark:text-white" />
+                                        class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
                                     <p v-if="notaVentaForm.errors[`detalle_${index}_cantidad`]" class="text-red-500">
                                         {{ notaVentaForm.errors[`detalle_${index}_cantidad`] }}
                                     </p>
                                 </td>
                                 <td class="border border-stroke px-4 py-2">
                                     <input type="text" v-model="detalle.precio_venta" readonly
-                                        class="w-full rounded border py-2 px-3 dark:bg-gray-700 dark:text-white" />
+                                        class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
                                     <p v-if="notaVentaForm.errors[`detalle_${index}_precio_venta`]"
                                         class="text-red-500">
                                         {{ notaVentaForm.errors[`detalle_${index}_precio_venta`] }}
@@ -270,7 +269,7 @@ const capitalizeWords = (input) => {
                                 </td>
                                 <td class="border border-stroke px-4 py-2">
                                     <input type="text" v-model="detalle.total" readonly
-                                        class="w-full rounded border py-2 px-3 dark:bg-gray-700 dark:text-white" />
+                                        class="relative z-20 w-full appearance-none rounded border border-stroke bg-transparent py-3 px-5 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary" />
                                 </td>
                                 <td class="border border-stroke px-4 py-2 text-center">
                                     <button @click.prevent="removeDetalleVenta(index)"
@@ -296,7 +295,7 @@ const capitalizeWords = (input) => {
                     <!-- Botón Guardar -->
                     <button @click.prevent="createClienteYNotaVenta"
                         class="bg-primary text-white px-6 py-3 rounded font-medium w-full">
-                        Guardar Cliente y Nota de Venta
+                        Realizar Venta
                     </button>
 
                 </div>

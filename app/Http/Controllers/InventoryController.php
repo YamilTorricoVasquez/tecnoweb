@@ -27,7 +27,7 @@ class InventoryController extends Controller
     protected function applySearch($query, $search)
     {
         return $query->when($search, function ($query, $search) {
-            $query->where('name', 'like', '%' . $search . '%');
+            $query->where('fecha', 'like', '%' . $search . '%');
         });
     }
     public function create()

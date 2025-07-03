@@ -38,15 +38,20 @@ class DetalleVentaController extends Controller
     }
 
 
-    protected function applySearch($query, $search)
-    {
-        return $query->when($search, function ($query, $search) {
-            // Filtrar por el nombre del cliente relacionado
-            $query->whereHas('products', function ($query) use ($search) {
-                $query->where('name', 'like', '%' . $search . '%');
-            });
+
+protected function applySearch($query, $search)
+{
+    return $query->when($search, function ($query, $search) {
+        $query->whereHas('producto', function ($q) use ($search) {
+            $q->where('name', 'like', '%' . $search . '%');
+        })
+        ->orWhereHas('notaventa.cliente', function ($q) use ($search) {
+            $q->where('nombre', 'like', '%' . $search . '%')
+              ->orWhere('apellido', 'like', '%' . $search . '%')
+              ->orWhereRaw("CONCAT(nombre, ' ', apellido) LIKE ?", ["%{$search}%"]);
         });
-    }
+    });
+}
     /* public function create(Request $request)
      {
          Gate::authorize('crear_detalle_venta');
@@ -67,7 +72,7 @@ class DetalleVentaController extends Controller
 
     public function create(Request $request)
     {
-        Gate::authorize('crear_detalle_venta');
+        Gate::authorize('Realizar_venta');
 
         // Obtener todos los productos
         $products = ProductResource::collection(Product::all());
@@ -87,7 +92,7 @@ class DetalleVentaController extends Controller
     public function store(StoreDetalleVentaRequest $request)
     {
         // Autorizar la acción
-        Gate::authorize('crear_detalle_venta');
+        Gate::authorize('Realizar_venta');
 
         // Validar los datos enviados desde el formulario
         $validated = $request->validated();
@@ -114,7 +119,23 @@ class DetalleVentaController extends Controller
        // return redirect()->route('detalleventas.index')->with('success', 'Detalle de venta creado correctamente.');
     }
 
+    public function storeMultiple(Request $request)
+{
+    $data = $request->validate([
+        'detalles' => 'required|array',
+        'detalles.*.id_nota_venta' => 'required|exists:nota_venta,id',
+        'detalles.*.id_producto' => 'required|exists:products,id',
+        'detalles.*.cantidad' => 'required|numeric|min:1',
+        'detalles.*.precio_venta' => 'required|numeric|min:0.01',
+        'detalles.*.total' => 'required|numeric|min:0',
+    ]);
 
+    foreach ($data['detalles'] as $detalle) {
+        \App\Models\DetalleVenta::create($detalle);
+    }
+
+    return response()->json(['message' => 'Detalles de venta registrados correctamente']);
+}
 
 
     /* public function store(StoreDetalleVentaRequest $request)

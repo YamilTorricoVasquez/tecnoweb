@@ -8,6 +8,7 @@ import SelectGroupTwo from '@/Components/Forms/SelectGroup/SelectGroupTwo.vue'
 import InputError from '@/Components/InputError.vue';
 
 import { Head, useForm, usePage, router } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3';
 
 defineProps({
   categories: {
@@ -56,24 +57,30 @@ const updateProduct = () => {
 
 <template>
 
-  <Head title="Editar medicamentos" />
+  <Head title="Editar Medicamentos" />
   <AuthenticatedLayout>
     <DefaultLayout>
       <div class="grid grid-cols-1">
         <div class="flex flex-col ">
+          <Link
+  :href="route('products.index')"
+  class="inline-flex items-center rounded bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300 mb-4"
+>
+  ← Volver al listado
+</Link>
           <!-- Contact Form Start -->
-          <DefaultCard cardTitle="Edit Product">
+          <DefaultCard cardTitle="Editar Medicamentos">
             <form @submit.prevent="updateProduct">
               <div class="p-6.5">
 
                 <div>
-                  <InputGroup v-model="form.name" label="Nombre" type="text" placeholder="Enter product name"
+                  <InputGroup v-model="form.name" label="Nombre del medicamento" type="text" placeholder="Ingrese el nombre del medicamento"
                     customClasses="mb-4.5" />
 
                   <InputError :message="form.errors.name" class="mt-2" />
                 </div>
                 <div>
-                  <InputGroup v-model="form.descripcion" label="Descripcion" type="text"
+                  <InputGroup v-model="form.descripcion" label="Descripcion del medicamento" type="text"
                     placeholder="Introduzca una descripcion" customClasses="mb-4.5" />
 
                   <InputError :message="form.errors.name" class="mt-2" />
@@ -98,7 +105,7 @@ const updateProduct = () => {
                 </div> -->
 
                 <div class="mb-4.5">
-                  <label class="mb-2.5 block text-black dark:text-white"> Category </label>
+                  <label class="mb-2.5 block text-black dark:text-white"> Categoria del medicamento </label>
 
                   <div class="relative z-20 bg-transparent dark:bg-form-input">
                     <select v-model="form.category_id" id="category_id"
@@ -107,7 +114,7 @@ const updateProduct = () => {
                         ' text-red-900 focus:ring-red-500 focus:border-red-500 border-red-300'
                           : form.errors.category_id
                       }">
-                      <option value="" disabled>Select category</option>
+                      <option value="" disabled>Seleccionar categoria</option>
                       <option v-for="item in categories.data" :key="item.id" :value="item.id">
                         {{ item.name }}
                       </option>
@@ -137,7 +144,7 @@ const updateProduct = () => {
 -->
                 <button type="submit"
                   class="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
-                  Update
+                  Editar
                 </button>
               </div>
             </form>

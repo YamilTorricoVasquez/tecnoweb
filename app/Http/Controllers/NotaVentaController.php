@@ -39,14 +39,23 @@ class NotaVentaController extends Controller
 
 
     protected function applySearch($query, $search)
-    {
-        return $query->when($search, function ($query, $search) {
-            // Filtrar por el nombre del cliente relacionado
-            $query->whereHas('cliente', function ($query) use ($search) {
-                $query->where('nombre', 'like', '%' . $search . '%');
-            });
-        });
-    }
+{
+    return $query->when($search, function ($query, $search) {
+        $query->whereHas('cliente', function ($q) use ($search) {
+            $q->where('nombre', 'like', '%' . $search . '%')
+              ->orWhere('apellido', 'like', '%' . $search . '%')
+              ->orWhereRaw("CONCAT(nombre, ' ', apellido) LIKE ?", ["%{$search}%"]);
+        })
+        ->orWhereHas('user', function ($q) use ($search) {
+            $q->where('name', 'like', '%' . $search . '%');
+        })
+         ->orWhereHas('paymentmethod', function ($q) use ($search) {
+            $q->where('metodo', 'like', '%' . $search . '%');
+        })
+        ->orWhere('fecha', 'like', '%' . $search . '%')
+        ->orWhere('total', 'like', '%' . $search . '%');
+    });
+}
 
     /* public function create()
      {
@@ -65,7 +74,7 @@ class NotaVentaController extends Controller
      }*/
     public function create()
     {
-        Gate::authorize('crear_notas_ventas');
+        Gate::authorize('Realizar_venta');
 
         // Obtener todos los clientes y métodos de pago
         $clientes = ClienteResource::collection(Cliente::all());
@@ -81,7 +90,7 @@ class NotaVentaController extends Controller
 
     public function store(StoreNotaVentaRequest $request)
     {
-        Gate::authorize('crear_notas_ventas');
+        Gate::authorize('Realizar_venta');
 
         // Valida los datos enviados desde el formulario
         $validated = $request->validated();
@@ -106,12 +115,13 @@ class NotaVentaController extends Controller
         // Dump the data to check if it's correctly loaded
         // dd($devoluciones);
         // Redirige a la misma vista con un mensaje de éxito y la notaventa creada
-        return inertia('NotaVenta/Index', [
-            'success' => 'Nota de venta creada correctamente.',
-            'notaventas' => $notaventas,
-            'search' => $request->search ?? '',
-            'notaventa' => $notaventa
-        ]);
+        // return inertia('NotaVenta/Index', [
+        //     'success' => 'Nota de venta creada correctamente.',
+        //     'notaventas' => $notaventas,
+        //     'search' => $request->search ?? '',
+        //     'notaventa' => $notaventa
+        // ]);
+        return response()->json(['notaventa' => $notaventa]);
     }
 
 

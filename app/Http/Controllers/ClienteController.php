@@ -36,12 +36,15 @@ class ClienteController extends Controller
             'search' => $request->search ?? '',
         ]);
     }
-    protected function applySearch($query, $search)
-    {
-        return $query->when($search, function ($query, $search) {
-            $query->where('nombre', 'like', '%' . $search . '%');
-        });
-    }
+
+protected function applySearch($query, $search)
+{
+    return $query->when($search, function ($query, $search) {
+        $query->where('nombre', 'like', '%' . $search . '%')
+              ->orWhere('apellido', 'like', '%' . $search . '%')
+              ->orWhereRaw("CONCAT(nombre, ' ', apellido) LIKE ?", ["%{$search}%"]);
+    });
+}
     /*  public function create()
       {
           Gate::authorize('crear_clientes');
@@ -52,7 +55,7 @@ class ClienteController extends Controller
     public function create()
     {
         // Autorización para crear cliente
-        Gate::authorize('crear_clientes');
+        Gate::authorize('Realizar_venta');
 
         // Obtener todos los métodos de pago
         $paymentmethods = PaymentMethod::all();
@@ -78,7 +81,12 @@ class ClienteController extends Controller
 
     public function store(StoreClienteRequest $request)
     {
-        Gate::authorize('crear_clientes');
+        /*
+        clientes
+notaventas
+detalleventas
+        */ 
+        Gate::authorize('Realizar_venta');
 
         $validated = $request->validated();
         $clienteExistente = Cliente::where('nombre', $validated['nombre'])
@@ -89,20 +97,22 @@ class ClienteController extends Controller
             // Si el cliente ya existe, verificamos si ya tiene una nota de venta
             $notaVentaExistente = NotaVenta::where('cliente_id', $clienteExistente->id)->latest()->first();
 
-            return inertia('Cliente/Create', [
-                'cliente' => $clienteExistente,
-                'notaventa' => $notaVentaExistente ? $notaVentaExistente : null,  // Devuelve la nota de venta si existe
-            ]);
+            // return inertia('Cliente/Create', [
+            //     'cliente' => $clienteExistente,
+            //     'notaventa' => $notaVentaExistente ? $notaVentaExistente : null,  // Devuelve la nota de venta si existe
+            // ]);
+              return response()->json(['cliente' => $clienteExistente]);
         }
 
         // Si el cliente no existe, creamos el cliente
         $cliente = Cliente::create($validated);
 
         // Devolvemos el cliente creado para que luego se cree la nota de venta
-        return inertia('Cliente/Create', [
-            'cliente' => $cliente,
-            'notaventa' => null,  // No hay nota de venta aún
-        ]);
+        // return inertia('Cliente/Create', [
+        //     'cliente' => $cliente,
+        //     'notaventa' => null,  // No hay nota de venta aún
+        // ]);
+        return response()->json(['cliente' => $cliente]);
     }
 
 

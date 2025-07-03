@@ -28,25 +28,31 @@ const createRole = () => {
 
 <template>
 
-  <Head title="Create Role" />
+  <Head title="Registrar Rol" />
 
   <AuthenticatedLayout>
     <DefaultLayout>
 
       <div class="grid grid-cols-1">
         <div class="flex flex-col ">
-          <DefaultCard cardTitle="Registrar Nuevo Rol">
+            <Link
+  :href="route('roles.index')"
+  class="inline-flex items-center rounded bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300 mb-4"
+>
+  ← Volver al listado
+</Link>
+          <DefaultCard cardTitle="Registrar Rol">
             <form @submit.prevent="createRole">
               <div class="p-6.5">
 
                 <div class="mb-4.5">
-                  <InputGroup v-model="form.title" label="Title" type="text" placeholder="Ingrese el nombre del nuevo rol" />
+                  <InputGroup v-model="form.title" label="Nombre del Rol" type="text" placeholder="Ingrese el nombre del nuevo rol" />
 
                   <InputError :message="form.errors.title" class="mt-2" />
                 </div>
 
                 <div class="mb-4.5">
-                  <label class="mb-2.5 block text-black dark:text-white"> Permissions </label>
+                  <label class="mb-2.5 block text-black dark:text-white"> Permisos </label>
 
                   <div class="relative z-20 bg-transparent dark:bg-form-input">
                     <v-select v-model="form.selectedPermissions" multiple :reduce="(permission) => permission.id"

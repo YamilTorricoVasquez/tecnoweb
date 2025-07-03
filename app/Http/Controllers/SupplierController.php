@@ -32,14 +32,14 @@ class SupplierController extends Controller
     }
     public function create()
     {
-        Gate::authorize('crear_proveedores');
+        Gate::authorize('Realizar_compra');
 
         return inertia('Supplier/Create');
     }
 
     public function store(StoreSupplierRequest $request)
     {
-        Gate::authorize('crear_proveedores');
+        Gate::authorize('Realizar_compra');
 
         $validated = $request->validated();
         $proveedorExistente = Supplier::where('name', $validated['name'])
@@ -50,18 +50,20 @@ class SupplierController extends Controller
             // Si el cliente ya existe, verificamos si ya tiene una nota de venta
             //  $notaVentaExistente = NotaVenta::where('cliente_id', $clienteExistente->id)->latest()->first();
 
-            return inertia('DetalleCompra/Create', [
-                'supplier' => $proveedorExistente,
-                // 'notaventa' => $notaVentaExistente ? $notaVentaExistente : null,  // Devuelve la nota de venta si existe
-            ]);
+            // return inertia('DetalleCompra/Create', [
+            //     'supplier' => $proveedorExistente,
+            //     // 'notaventa' => $notaVentaExistente ? $notaVentaExistente : null,  // Devuelve la nota de venta si existe
+            // ]);
+             return response()->json(['supplier' => $proveedorExistente]);
         }
         $supplier = Supplier::create($validated);
 
 
-        return inertia('DetalleCompra/Create', [
-            'supplier' => $supplier,
-            //  'notaventa' => null,  // No hay nota de venta aún
-        ]);
+        // return inertia('DetalleCompra/Create', [
+        //     'supplier' => $supplier,
+        //     //  'notaventa' => null,  // No hay nota de venta aún
+        // ]);
+        return response()->json(['supplier' => $supplier]);
 
 
     }

@@ -44,11 +44,22 @@ class DevolucionController extends Controller
 
 
     protected function applySearch($query, $search)
-    {
-        return $query->when($search, function ($query, $search) {
-            $query->where('name', 'like', '%' . $search . '%');
-        });
-    }
+{
+    return $query->when($search, function ($query, $search) {
+        $query->whereHas('product', function ($q) use ($search) {
+            $q->where('name', 'like', '%' . $search . '%');
+        })
+        ->orWhereHas('supplier', function ($q) use ($search) {
+            $q->where('name', 'like', '%' . $search . '%');
+        })
+        
+        ->orWhereHas('user', function ($q) use ($search) {
+            $q->where('name', 'like', '%' . $search . '%');
+        })
+        ->orWhere('fecha_caducidad', 'like', '%' . $search . '%')
+        ->orWhere('cantidad', 'like', '%' . $search . '%');
+    });
+}
 
 
     /**/

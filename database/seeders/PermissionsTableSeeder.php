@@ -58,9 +58,9 @@ class PermissionsTableSeeder extends Seeder
             [
                 'title' => 'ver_proveedores',
             ],
-            [
-                'title' => 'crear_proveedores',
-            ],
+            // [
+            //     'title' => 'crear_proveedores',
+            // ],
             [
                 'title' => 'editar_proveedores',
             ],
@@ -168,16 +168,16 @@ class PermissionsTableSeeder extends Seeder
             [
                 'title' => 'ver_detalle_compra',
             ],
-            [
-                'title' => 'crear_detalle_compra',
-            ],
+            // [
+            //     'title' => 'crear_detalle_compra',
+            // ],
 
             [
                 'title' => 'ver_detalle_venta',
             ],
-            [
-                'title' => 'crear_detalle_venta',
-            ],
+            // [
+            //     'title' => 'crear_detalle_venta',
+            // ],
             [
                 'title' => 'eliminar_detalle_venta',
             ],
@@ -206,22 +206,28 @@ class PermissionsTableSeeder extends Seeder
             [
                 'title' => 'ver_notas_compras',
             ],
+            // [
+            //     'title' => 'crear_notas_compras',
+            // ],
             [
-                'title' => 'crear_notas_compras',
+                'title' => 'Realizar_compra',
             ],
 
             [
                 'title' => 'ver_notas_ventas',
             ],
-            [
-                'title' => 'crear_notas_ventas',
-            ],
+            // [
+            //     'title' => 'crear_notas_ventas',
+            // ],
 
             [
                 'title' => 'ver_clientes',
             ],
+            // [
+            //     'title' => 'crear_clientes',
+            // ],
             [
-                'title' => 'crear_clientes',
+                'title' => 'Realizar_venta',
             ],
             [
                 'title' => 'editar_clientes',

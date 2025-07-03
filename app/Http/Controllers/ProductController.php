@@ -63,6 +63,23 @@ class ProductController extends Controller
 
         return redirect()->route('products.index');
     }
+    public function storeMultiple(Request $request)
+    {
+        Gate::authorize('crear_medicamentos');
+
+        $data = $request->validate([
+            'productos' => 'required|array',
+            'productos.*.name' => 'required|string|unique:products,name',
+            'productos.*.descripcion' => 'required|string',
+            'productos.*.category_id' => 'required|exists:categories,id',
+        ]);
+
+        foreach ($data['productos'] as $producto) {
+            Product::create($producto);
+        }
+
+        return redirect()->route('products.index');
+    }
     public function check(Request $request)
     {
         try {
@@ -130,5 +147,8 @@ class ProductController extends Controller
 
         return redirect()->route('products.index');
     }
-
+    public function apiIndex()
+    {
+        return \App\Models\Product::paginate(5);
+    }
 }

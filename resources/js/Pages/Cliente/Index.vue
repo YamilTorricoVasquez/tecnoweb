@@ -125,11 +125,11 @@ const capitalizeWords = (input) => {
                     <div class="col-span-1 flex items-center">
                         <Link v-if="page.props.can.editar_inventarios" :href="route('clientes.edit', cliente.id)"
                             class="text-indigo-600 hover:text-indigo-900">
-                        Edit
+                        Editar
                         </Link>
                         <button v-if="page.props.can.eliminar_inventarios" @click="deleteCliente(cliente.id)"
                             class="ml-2 text-indigo-600 hover:text-indigo-900">
-                            Delete
+                            Eliminar
                         </button>
 
                     </div>

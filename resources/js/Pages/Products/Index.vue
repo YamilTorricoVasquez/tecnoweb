@@ -70,7 +70,9 @@ const deleteProduct = (productId) => {
   });
 
 }
-
+const capitalizeWords = (input) => {
+  return input.replace(/\b\w/g, (char) => char.toUpperCase());
+};
 </script>
 
 <template>
@@ -81,7 +83,9 @@ const deleteProduct = (productId) => {
       <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div class="pb-4 px-5">
           <div class="flex flex-col justify-between sm:flex-row mt-4">
-            <InputGroup v-model="search" type="text" autocomplete="off" placeholder="Buscar..." autofocus
+            <InputGroup v-model="search" 
+            @input="search = capitalizeWords(search)"
+            type="text" autocomplete="off" placeholder="Buscar..." autofocus
               customClasses="block" />
 
             <div class="mt-4 sm:ml-16 sm:flex-none">
@@ -89,7 +93,7 @@ const deleteProduct = (productId) => {
                   inline-flex items-center justify-center rounded
                 bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm 
                   hover:bg-indigo-700">
-              Agregar productos
+              Registrar Medicamentos
               </Link>
             </div>
 
@@ -104,14 +108,14 @@ const deleteProduct = (productId) => {
             <p class="font-medium">Nombre del medicamento</p>
           </div>
           <div class="col-span-1 hidden items-center sm:flex">
-            <p class="font-medium">Descripcion</p>
+            <p class="font-medium">Descripcion del medicamento</p>
           </div>
           <div class="col-span-1 flex items-center">
-            <p class="font-medium">Categoria</p>
+            <p class="font-medium">Categoria del medicamento</p>
           </div>
-          <div class="col-span-1 flex items-center">
+          <!-- <div class="col-span-1 flex items-center">
             <p class="font-medium">Fecha de registro</p>
-          </div>
+          </div> -->
           <div class="col-span-1 flex items-center">
             <p class="font-medium">Acciones</p>
           </div>
@@ -140,11 +144,11 @@ const deleteProduct = (productId) => {
           <div class="col-span-1 flex items-center">
             <Link v-if="page.props.can.editar_medicamentos" :href="route('products.edit', product.id)"
               class="text-indigo-600 hover:text-indigo-900">
-            Edit
+            Editar
             </Link>
-            <button v-if="page.props.can.product_delete" @click="deleteProduct(product.id)"
+            <button v-if="page.props.can.eliminar_medicamentos" @click="deleteProduct(product.id)"
               class="ml-2 text-indigo-600 hover:text-indigo-900">
-              Delete
+              Eliminar
             </button>
 
           </div>

@@ -321,24 +321,24 @@ const menuGroups = ref([
         //route: '/caducidades',
         route: route("caducidades.index"),
       },
-      {
-        icon: `<svg
-  class="fill-current"
-  width="18"
-  height="18"
-  viewBox="0 0 24 24"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <path
-    d="M3 4H21V6H3V4ZM3 9H16V11H3V9ZM3 14H21V16H3V14ZM3 19H16V21H3V19ZM18 9H21V11H18V9ZM18 14H21V16H18V14Z"
-    fill="currentColor"
-  />
-</svg>
-`,
-        label: 'Detalle Cantidad Venta',
-        //route: '/detallecantidadventas',
-         route:  route('detallecantidadventas.index'),
-      },
+//       {
+//         icon: `<svg
+//   class="fill-current"
+//   width="18"
+//   height="18"
+//   viewBox="0 0 24 24"
+//   xmlns="http://www.w3.org/2000/svg"
+// >
+//   <path
+//     d="M3 4H21V6H3V4ZM3 9H16V11H3V9ZM3 14H21V16H3V14ZM3 19H16V21H3V19ZM18 9H21V11H18V9ZM18 14H21V16H18V14Z"
+//     fill="currentColor"
+//   />
+// </svg>
+// `,
+//         label: 'Detalle Cantidad Venta',
+//         //route: '/detallecantidadventas',
+//          route:  route('detallecantidadventas.index'),
+//       },
       {
         icon: `<svg
   class="fill-current"

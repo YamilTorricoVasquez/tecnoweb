@@ -160,7 +160,7 @@ const deleteNotaVenta = (notaventaId) => {
                         Table Rows-->
                         <button v-if="page.props.can.eliminar_inventarios" @click="deleteNotaVenta(notaventa.id)"
                             class="ml-2 text-indigo-600 hover:text-indigo-900">
-                            Delete
+                            Eliminar
                         </button>
 
                     </div>

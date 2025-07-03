@@ -38,14 +38,24 @@ class NotaCompraController extends Controller
 
 
     protected function applySearch($query, $search)
-    {
-        return $query->when($search, function ($query, $search) {
-            $query->where('name', 'like', '%' . $search . '%');
-        });
-    }
+{
+    return $query->when($search, function ($query, $search) {
+        $query->whereHas('proveedor', function ($q) use ($search) {
+            $q->where('name', 'like', '%' . $search . '%')
+              ->orWhere('nombre_empresa', 'like', '%' . $search . '%');
+        })
+        ->orWhereHas('user', function ($q) use ($search) {
+            $q->where('name', 'like', '%' . $search . '%');
+        })
+        ->orWhereHas('paymentmethod', function ($q) use ($search) {
+            $q->where('metodo', 'like', '%' . $search . '%');
+        })
+        ->orWhere('fecha', 'like', '%' . $search . '%');
+    });
+}
     public function create()
     {
-        Gate::authorize('crear_notas_compras');
+        Gate::authorize('Realizar_compra');
 
         // Obtener todos los productos
         $suppliers = SupplierResource::collection(Supplier::all());
@@ -63,7 +73,7 @@ class NotaCompraController extends Controller
 
     public function store(StoreNotaCompraRequest $request)
     {//crear_notas_ventas
-        Gate::authorize('crear_notas_compras');
+        Gate::authorize('Realizar_compra');
 
         // Valida los datos enviados desde el formulario
         $validated = $request->validated();
@@ -80,9 +90,11 @@ class NotaCompraController extends Controller
 
         // Redirige al índice de notas de venta
         //return redirect()->route('notacompras.index')->with('success', 'Nota de venta creada correctamente.');
-        return inertia('DetalleCompra/Create', [
-            'notacompra' => $notacompra,
-            //  'notaventa' => null,  // No hay nota de venta aún
-        ]);
+        // return inertia('DetalleCompra/Create', [
+        //     'notacompra' => $notacompra,
+        //     //  'notaventa' => null,  // No hay nota de venta aún
+        // ]);
+        return response()->json(['notacompra' => $notacompra]);
     }
+    
 }

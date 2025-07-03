@@ -30,12 +30,15 @@ class InventoryDetailController extends Controller
     }
 
 
-    protected function applySearch($query, $search)
-    {
-        return $query->when($search, function ($query, $search) {
-            $query->where('name', 'like', '%' . $search . '%');
+
+protected function applySearch($query, $search)
+{
+    return $query->when($search, function ($query, $search) {
+        $query->whereHas('product', function ($q) use ($search) {
+            $q->where('name', 'like', '%' . $search . '%');
         });
-    }
+    });
+}
     public function edit(InventoryDetail $inventorydetail)
     {
         Gate::authorize('editar_detalles_inventarios');

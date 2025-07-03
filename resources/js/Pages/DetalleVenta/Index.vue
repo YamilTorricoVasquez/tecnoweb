@@ -75,7 +75,7 @@ const deleteDetalleVenta = (detalleventaId) => {
 
 <template>
 
-    <Head title="Detalle venta List" />
+    <Head title="Lista Detalle de Venta" />
     <AuthenticatedLayout>
         <DefaultLayout>
             <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -155,7 +155,7 @@ const deleteDetalleVenta = (detalleventaId) => {
                         </Link>-->
                         <button v-if="page.props.can.eliminar_detalle_venta" @click="deleteDetalleVenta(detalleventa.id)"
                             class="ml-2 text-indigo-600 hover:text-indigo-900">
-                            Delete
+                            Eliminar
                         </button>
 
                     </div>

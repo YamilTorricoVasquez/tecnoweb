@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useSidebarStore } from '@/stores/sidebar'
 import DarkModeSwitcher from './DarkModeSwitcher.vue'
+
 import DropdownUser from './DropdownUser.vue'
 
 const { isSidebarOpen, toggleSidebar } = useSidebarStore()
@@ -62,6 +63,7 @@ const { isSidebarOpen, toggleSidebar } = useSidebarStore()
           <li>
             <!-- Dark Mode Toggler -->
             <DarkModeSwitcher />
+            
             <!-- Dark Mode Toggler -->
           </li>
         </ul>

@@ -1,16 +1,23 @@
 <template>
 
-    <Head title="Sign Up" />
+     <Head title="Registrar Usuario" />
     <DefaultLayout>
         <div class="grid grid-cols-1">
             <div class="flex flex-col">
+                <Link
+  :href="route('users.index')"
+  class="inline-flex items-center rounded bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300 mb-4"
+>
+  ← Volver al listado
+</Link>
                 <!-- Formulario de Registro -->
-                <DefaultCard cardTitle="Registrar Nuevo Usuario">
+                <DefaultCard cardTitle="Registrar Usuario">
                     <form @submit.prevent="submit">
                         <div class="p-6.5">
                             <!-- Campo de Nombre -->
                             <div class="mb-4.5">
                                 <InputGroup v-model="form.name" label="Nombre" type="text"
+                                @input="form.name = capitalizeWords(form.name)"
                                     placeholder="Ingrese su nombre completo" />
                                 <InputError :message="form.errors.name" class="mt-2" />
                             </div>
@@ -18,6 +25,7 @@
                             <!-- Campo de Correo Electrónico -->
                             <div class="mb-4.5">
                                 <InputGroup v-model="form.email" label="Correo Electrónico" type="email"
+                                @input="form.email = capitalizeFirstLetter(form.email)"
                                     placeholder="Ingrese su correo electrónico" />
                                 <InputError :message="form.errors.email" class="mt-2" />
                             </div>
@@ -58,7 +66,7 @@
                             <!-- Botón de Enviar -->
                             <button type="submit"
                                 class="flex w-full justify-center rounded bg-primary p-3 font-medium text-white hover:bg-opacity-90">
-                                Crear Cuenta
+                                Registrar Cuenta
                             </button>
                         </div>
                     </form>
@@ -75,7 +83,16 @@ import DefaultCard from '@/Components/Forms/DefaultCard.vue';
 import InputError from '@/Components/InputError.vue';
 import { ref } from 'vue';
 import { Head, useForm } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3';
 
+
+const capitalizeWords = (input) => {
+  return input.replace(/\b\w/g, (char) => char.toUpperCase());
+};
+
+const capitalizeFirstLetter = (input) => {
+  return input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
+};
 const form = useForm({
     name: '',
     email: '',

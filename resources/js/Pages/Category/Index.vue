@@ -74,7 +74,7 @@ const deleteCategory = (categoryId) => {
 
 <template>
 
-  <Head title="Categories List" />
+  <Head title="Lista de categorias" />
   <AuthenticatedLayout>
     <DefaultLayout>
       <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -88,7 +88,7 @@ const deleteCategory = (categoryId) => {
                   inline-flex items-center justify-center rounded
                 bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm 
                   hover:bg-indigo-700">
-              Agregar categoría
+              Registrar categoría
               </Link>
             </div>
 
@@ -115,11 +115,11 @@ const deleteCategory = (categoryId) => {
           <div class="col-span-1 flex items-center">
             <Link v-if="page.props.can.editar_categorias" :href="route('categories.edit', category.id)"
               class="text-indigo-600 hover:text-indigo-900">
-            Edit
+            Editar
             </Link>
             <button v-if="page.props.can.eliminar_categorias" @click="deleteCategory(category.id)"
               class="ml-2 text-indigo-600 hover:text-indigo-900">
-              Delete
+              Eliminar
             </button>
 
           </div>

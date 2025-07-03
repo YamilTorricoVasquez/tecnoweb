@@ -1,11 +1,11 @@
 <template>
 
-    <Head title="Add Supplier" />
+    <Head title="Registrar Proveedores" />
     <DefaultLayout>
         <div class="grid grid-cols-1">
             <div class="flex flex-col">
                 <!-- Formulario de Categorías -->
-                <DefaultCard cardTitle="Agregar Proveedor">
+                <DefaultCard cardTitle="Registrar Proveedores">
                     <form @submit.prevent="createSupplier">
                         <div class="p-6.5">
                             <!-- Campo de Nombre -->
@@ -28,7 +28,7 @@ Ingrese el nombre de la empresa" />
                             <!-- Botón de Guardar -->
                             <button type="submit"
                                 class="flex w-full justify-center rounded bg-primary p-3 font-medium text-white hover:bg-opacity-90">
-                                Guardar
+                                Registrar
                             </button>
                         </div>
                     </form>

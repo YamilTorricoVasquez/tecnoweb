@@ -125,11 +125,11 @@ const deleteSupplier = (supplierId) => {
                     <div class="col-span-1 flex items-center">
                         <Link v-if="page.props.can.editar_proveedores" :href="route('suppliers.edit', supplier.id)"
                             class="text-indigo-600 hover:text-indigo-900">
-                        Edit
+                        Editar 
                         </Link>
                         <button v-if="page.props.can.eliminar_proveedores" @click="deleteSupplier(supplier.id)"
                             class="ml-2 text-indigo-600 hover:text-indigo-900">
-                            Delete
+                            Eliminar
                         </button>
                     </div>
                 </div>

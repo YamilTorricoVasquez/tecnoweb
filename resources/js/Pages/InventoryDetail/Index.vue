@@ -75,7 +75,7 @@ const deleteInventoryDetail = (inventorydetailId) => {
 
 <template>
 
-  <Head title="Inventory Detail List" />
+  <Head title="Lista Detalle de Inventario" />
   <AuthenticatedLayout>
     <DefaultLayout>
       <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -140,7 +140,7 @@ const deleteInventoryDetail = (inventorydetailId) => {
           <div class="col-span-1 flex items-center">
             <Link v-if="page.props.can.editar_detalles_inventarios" :href="route('inventorydetails.edit', inventorydetail.id)"
               class="text-indigo-600 hover:text-indigo-900">
-            Edit
+            Editar
             </Link>
 
             <!-- Mostrar Proveedor 

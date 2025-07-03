@@ -1,7 +1,7 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import DefaultLayout from '@/Layouts/DefaultLayout.vue';
-import { Head, useForm, usePage } from "@inertiajs/vue3";
+import {Link, Head, useForm, usePage } from "@inertiajs/vue3";
 import InputError from "@/Components/InputError.vue";
 import DefaultCard from '@/Components/Forms/DefaultCard.vue'
 import InputGroup from '@/Components/Forms/InputGroup.vue'
@@ -29,13 +29,19 @@ const updateCliente = () => {
 
 <template>
 
-    <Head title="Edit Cliente" />
+    <Head title="Editar Cliente" />
 
     <AuthenticatedLayout>
         <DefaultLayout>
             <div class="grid grid-cols-1">
                 <div class="flex flex-col">
-                    <DefaultCard cardTitle="Edit Cliente">
+                    <Link
+  :href="route('clientes.index')"
+  class="inline-flex items-center rounded bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300 mb-4"
+>
+  ← Volver al listado
+</Link>
+                    <DefaultCard cardTitle="Editar Cliente">
                         <form @submit.prevent="updateCliente">
                             <div class="p-6.5">
 

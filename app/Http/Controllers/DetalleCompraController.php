@@ -39,14 +39,18 @@ class DetalleCompraController extends Controller
 
 
     protected function applySearch($query, $search)
-    {
-        return $query->when($search, function ($query, $search) {
-            $query->where('name', 'like', '%' . $search . '%');
-        });
-    }
+{
+    return $query->when($search, function ($query, $search) {
+        $query->whereHas('producto', function ($q) use ($search) {
+            $q->where('name', 'like', '%' . $search . '%');
+        })
+        ->orWhere('fecha_caducidad', 'like', '%' . $search . '%')
+        ->orWhere('cantidad', 'like', '%' . $search . '%');
+    });
+}
     public function create(Request $request)
     {
-        Gate::authorize('crear_detalle_compra');
+        Gate::authorize('Realizar_compra');
 
         // Obtener todos los productos
         //   $products = ProductResource::collection(Product::all());
@@ -74,7 +78,7 @@ class DetalleCompraController extends Controller
 
     public function store(StoreDetalleCompraRequest $request)
     {//crear_detalle_compra
-        Gate::authorize('crear_detalle_compra');
+        Gate::authorize('Realizar_compra');
 
         // Valida los datos enviados desde el formulario
         $validated = $request->validated();
@@ -91,6 +95,24 @@ class DetalleCompraController extends Controller
         DetalleCompra::create($validated);
 
         // Redirige al índice de notas de venta
-        return redirect()->route('detallecompras.index')->with('success', 'Nota de venta creada correctamente.');
+        //return redirect()->route('detallecompras.index')->with('success', 'Nota de venta creada correctamente.');
     }
+public function storeMultiple(Request $request)
+{
+    $data = $request->validate([
+        'detalles' => 'required|array',
+        'detalles.*.id_nota_compra' => 'required|exists:nota_compra,id',
+        'detalles.*.id_producto' => 'required|exists:products,id',
+        'detalles.*.fecha_caducidad' => 'required|date',
+        'detalles.*.cantidad' => 'required|numeric|min:1',
+        'detalles.*.precio_compra' => 'required|numeric|min:0.01',
+        'detalles.*.total' => 'required|numeric|min:0',
+    ]);
+
+    foreach ($data['detalles'] as $detalle) {
+        \App\Models\DetalleCompra::create($detalle);
+    }
+
+    //return response()->json(['message' => 'Detalles de compra registrados correctamente']);
+}
 }

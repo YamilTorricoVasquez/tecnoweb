@@ -93,18 +93,23 @@ const deleteRole = (id) => {
   });
 
 };
+const capitalizeWords = (input) => {
+  return input.replace(/\b\w/g, (char) => char.toUpperCase());
+};
 </script>
 
 <template>
 
-  <Head title="Roles List" />
+  <Head title="Lista de Roles" />
 
   <AuthenticatedLayout>
     <DefaultLayout>
       <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div class="pb-4 px-5">
           <div class="flex flex-col justify-between sm:flex-row mt-4">
-            <InputGroup v-model="search" type="text" autocomplete="off" placeholder="buscar..." autofocus
+            <InputGroup v-model="search" 
+            @input="search = capitalizeWords(search)"
+            type="text" autocomplete="off" placeholder="buscar..." autofocus
               customClasses="block" />
 
             <div class="mt-4 sm:ml-16 sm:flex-none">
@@ -112,7 +117,7 @@ const deleteRole = (id) => {
               inline-flex items-center justify-center rounded
               bg-primary px-4 py-2 text-sm font-medium text-white 
               shadow-sm hover:bg-indigo-700">
-              Agregar rol
+              Registrar rol
               </Link>
             </div>
 

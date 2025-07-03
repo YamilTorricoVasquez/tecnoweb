@@ -74,7 +74,7 @@ const deletePaymentMethod = (paymentMethodId) => {
 
 <template>
 
-    <Head title="Payment Method List" />
+    <Head title="Lista de Metodos de Pagos" />
     <AuthenticatedLayout>
         <DefaultLayout>
             <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -88,7 +88,7 @@ const deletePaymentMethod = (paymentMethodId) => {
                   inline-flex items-center justify-center rounded
                 bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm 
                   hover:bg-indigo-700">
-                            Agregar metodo de pago
+                            Registrar Metodo de Pago
                             </Link>
                         </div>
 
@@ -116,11 +116,11 @@ const deletePaymentMethod = (paymentMethodId) => {
                     <div class="col-span-1 flex items-center">
                         <Link v-if="page.props.can.editar_metodos_pagos" :href="route('paymentmethods.edit', paymentmethod.id)"
                             class="text-indigo-600 hover:text-indigo-900">
-                        Edit
+                        Editar
                         </Link>
                         <button v-if="page.props.can.eliminar_metodos_pagos" @click="deletePaymentMethod(paymentmethod.id)"
                             class="ml-2 text-indigo-600 hover:text-indigo-900">
-                            Delete
+                            Eliminar
                         </button>
 
                     </div>

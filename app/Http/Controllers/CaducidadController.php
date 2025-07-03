@@ -33,9 +33,13 @@ class CaducidadController extends Controller
 
 
     protected function applySearch($query, $search)
-    {
-        return $query->when($search, function ($query, $search) {
-            $query->where('name', 'like', '%' . $search . '%');
-        });
-    }
+{
+    return $query->when($search, function ($query, $search) {
+        $query->whereHas('producto', function ($q) use ($search) {
+            $q->where('name', 'like', '%' . $search . '%');
+        })
+        ->orWhere('fecha_caducidad', 'like', '%' . $search . '%')
+         ->orWhere('cantidad', 'like', '%' . $search . '%');
+    });
+}
 }

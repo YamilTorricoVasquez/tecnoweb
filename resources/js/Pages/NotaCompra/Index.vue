@@ -70,18 +70,26 @@ const deleteNotaCompra = (notacompraId) => {
     });
 
 }
+const capitalizeWords = (input) => {
+  return input.replace(/\b\w/g, (char) => char.toUpperCase());
+};
 
+const capitalizeFirstLetter = (input) => {
+  return input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
+};
 </script>
 
 <template>
 
-    <Head title="Nota compra List" />
+    <Head title="Lista Nota de Compra" />
     <AuthenticatedLayout>
         <DefaultLayout>
             <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                 <div class="pb-4 px-5">
                     <div class="flex flex-col justify-between sm:flex-row mt-4">
-                        <InputGroup v-model="search" type="text" autocomplete="off" placeholder="Buscar..." autofocus
+                        <InputGroup v-model="search" type="text" autocomplete="off" 
+                            @input="search = capitalizeWords(search)"
+                        placeholder="Buscar..." autofocus
                             customClasses="block" />
                         <!-- Table Header
                         <div class="mt-4 sm:ml-16 sm:flex-none">

@@ -1,11 +1,17 @@
 <template>
 
-    <Head title="Editar Usuario" />
+    <Head title="Editar Usuarios" />
     <DefaultLayout>
         <div class="grid grid-cols-1">
             <div class="flex flex-col">
+                <Link
+  :href="route('users.index')"
+  class="inline-flex items-center rounded bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300 mb-4"
+>
+  ← Volver al listado
+</Link>
                 <!-- Formulario de Edición de Usuario -->
-                <DefaultCard cardTitle="Editar Usuario">
+                <DefaultCard cardTitle="Editar Usuarios">
                     <form @submit.prevent="updateUser">
                         <div class="p-6.5">
                             <!-- Campo de Nombre -->
@@ -48,7 +54,7 @@
                             <!-- Botón de Enviar -->
                             <button type="submit"
                                 class="flex w-full justify-center rounded bg-primary p-3 font-medium text-white hover:bg-opacity-90">
-                                Actualizar Usuario
+                                Editar
                             </button>
                         </div>
                     </form>
@@ -63,7 +69,8 @@ import DefaultLayout from '@/Layouts/DefaultLayout.vue';
 import InputGroup from '@/Components/Forms/InputGroup.vue';
 import DefaultCard from '@/Components/Forms/DefaultCard.vue';
 import InputError from '@/Components/InputError.vue';
-import { useForm } from '@inertiajs/vue3';
+import { useForm,Link,Head } from '@inertiajs/vue3';
+
 
 // Verifica que los datos sean pasados correctamente
 const props = defineProps({

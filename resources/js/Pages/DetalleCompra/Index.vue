@@ -75,7 +75,7 @@ const deleteDetalleCompra = (detallecompraId) => {
 
 <template>
 
-    <Head title="Detalle venta List" />
+    <Head title="Lista Detalle de Compra" />
     <AuthenticatedLayout>
         <DefaultLayout>
             <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
