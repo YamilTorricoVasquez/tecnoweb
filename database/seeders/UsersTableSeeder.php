@@ -15,13 +15,13 @@ class UsersTableSeeder extends Seeder
     {
         $users = [
             [
-                'name' => 'Administrator',
+                'name' => 'Mireya Maribel Rojas Martinez',
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt('123')
             ],
             [
-                'name' => 'User',
-                'email' => 'usuario@gmail.com',
+                'name' => 'Samira Vicente Iquize',
+                'email' => 'samira@gmail.com',
                 'password' => bcrypt('123')
             ]
         ];

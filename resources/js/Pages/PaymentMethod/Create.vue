@@ -20,7 +20,7 @@
                                 @input="form.metodo = capitalizeWords(form.metodo)"
                                 placeholder="Ingrese el nombre del metodo de pago" />
                                 
-                               
+                                <InputError :message="form.errors.metodo" class="mt-2" />
                             </div>
 
                             <!-- Botón de Guardar -->
