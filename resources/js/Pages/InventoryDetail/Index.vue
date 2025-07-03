@@ -138,7 +138,7 @@ const deleteInventoryDetail = (inventorydetailId) => {
 
           <!-- Mostrar Proveedor -->
           <div class="col-span-1 flex items-center">
-            <Link v-if="page.props.can.inventorydetail_edit" :href="route('inventorydetails.edit', inventorydetail.id)"
+            <Link v-if="page.props.can.editar_detalles_inventarios" :href="route('inventorydetails.edit', inventorydetail.id)"
               class="text-indigo-600 hover:text-indigo-900">
             Edit
             </Link>

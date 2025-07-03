@@ -84,7 +84,7 @@ const deleteCategory = (categoryId) => {
               customClasses="block" />
 
             <div class="mt-4 sm:ml-16 sm:flex-none">
-              <Link v-if="page.props.can.category_create" :href="route('categories.create')" class="
+              <Link v-if="page.props.can.crear_categorias" :href="route('categories.create')" class="
                   inline-flex items-center justify-center rounded
                 bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm 
                   hover:bg-indigo-700">
@@ -113,11 +113,11 @@ const deleteCategory = (categoryId) => {
             <p class="text-sm font-medium text-black dark:text-white">{{ category.name }}</p>
           </div>
           <div class="col-span-1 flex items-center">
-            <Link v-if="page.props.can.category_edit" :href="route('categories.edit', category.id)"
+            <Link v-if="page.props.can.editar_categorias" :href="route('categories.edit', category.id)"
               class="text-indigo-600 hover:text-indigo-900">
             Edit
             </Link>
-            <button v-if="page.props.can.category_delete" @click="deleteCategory(category.id)"
+            <button v-if="page.props.can.eliminar_categorias" @click="deleteCategory(category.id)"
               class="ml-2 text-indigo-600 hover:text-indigo-900">
               Delete
             </button>

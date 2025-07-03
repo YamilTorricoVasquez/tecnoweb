@@ -14,7 +14,7 @@ class CategoryController extends Controller
 {
     public function index(Request $request)
     {
-        Gate::authorize('category_access');
+        Gate::authorize('ver_categorias');
 
         $categoriesQuery = Category::query();
 
@@ -34,14 +34,14 @@ class CategoryController extends Controller
     }
     public function create()
     {
-        Gate::authorize('category_create');
+        Gate::authorize('crear_categorias');
 
         return inertia('Category/Create');
     }
 
     public function store(StoreCategoryRequest $request)
     {
-        Gate::authorize('category_create');
+        Gate::authorize('crear_categorias');
 
         $validated = $request->validated();
 
@@ -51,7 +51,7 @@ class CategoryController extends Controller
     }
     public function edit(Category $category)
     {
-        Gate::authorize('category_edit');
+        Gate::authorize('editar_categorias');
 
         return inertia('Category/Edit', [
             'category' => CategoryResource::make($category),
@@ -60,7 +60,7 @@ class CategoryController extends Controller
 
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        Gate::authorize('category_edit');
+        Gate::authorize('editar_categorias');
 
         $validated = $request->validated();
 
@@ -75,7 +75,7 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
-        Gate::authorize('category_delete');
+        Gate::authorize('eliminar_categorias');
 
         $category->delete();
 

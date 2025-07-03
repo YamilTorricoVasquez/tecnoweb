@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Gate;
 class DetalleCantidadVentaController extends Controller
 {
     public function index(Request $request)
-    {//detalle_cantidad_venta_access
-        Gate::authorize('detalle_cantidad_venta_access');
+    {//ver_detalle_cantidad_venta
+        Gate::authorize('ver_detalle_cantidad_venta');
 
         // Cargar relación con product y inventory
         //    $DetalleVentasQuery = DetalleVenta::query();

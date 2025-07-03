@@ -22,9 +22,9 @@ use App\Http\Resources\ClienteResource;
 class ClienteController extends Controller
 {
     public function index(Request $request)
-    {//cliente_access
-        //cliente_create
-        Gate::authorize('cliente_access');
+    {//ver_clientes
+        //crear_clientes
+        Gate::authorize('ver_clientes');
 
         $clienteQuery = Cliente::query();
 
@@ -44,7 +44,7 @@ class ClienteController extends Controller
     }
     /*  public function create()
       {
-          Gate::authorize('cliente_create');
+          Gate::authorize('crear_clientes');
          
 
           return inertia('Cliente/Create');
@@ -52,7 +52,7 @@ class ClienteController extends Controller
     public function create()
     {
         // Autorización para crear cliente
-        Gate::authorize('cliente_create');
+        Gate::authorize('crear_clientes');
 
         // Obtener todos los métodos de pago
         $paymentmethods = PaymentMethod::all();
@@ -78,7 +78,7 @@ class ClienteController extends Controller
 
     public function store(StoreClienteRequest $request)
     {
-        Gate::authorize('cliente_create');
+        Gate::authorize('crear_clientes');
 
         $validated = $request->validated();
         $clienteExistente = Cliente::where('nombre', $validated['nombre'])
@@ -112,7 +112,7 @@ class ClienteController extends Controller
 
     /*public function store(StoreClienteRequest $request)
     {
-        Gate::authorize('cliente_create');
+        Gate::authorize('crear_clientes');
 
         $validated = $request->validated();
 
@@ -125,8 +125,8 @@ class ClienteController extends Controller
     /* public function create(Request $request)
      {
          // Autorizar la creación de cliente y detalle de venta
-         Gate::authorize('cliente_create');
-         Gate::authorize('detalle_venta_create');
+         Gate::authorize('crear_clientes');
+         Gate::authorize('crear_detalle_venta');
 
          // Obtener todos los métodos de pago
          $paymentmethods = PaymentMethod::all();
@@ -150,8 +150,8 @@ class ClienteController extends Controller
      public function store(StoreClienteRequest $requestCliente, StoreDetalleVentaRequest $requestDetalle)
      {
          // Autorizar la acción
-         Gate::authorize('cliente_create');
-         Gate::authorize('detalle_venta_create');
+         Gate::authorize('crear_clientes');
+         Gate::authorize('crear_detalle_venta');
 
          // **1. Crear o obtener Cliente**
          $validatedCliente = $requestCliente->validated();
@@ -212,7 +212,7 @@ class ClienteController extends Controller
 
     public function edit(Cliente $cliente)
     {
-        Gate::authorize('cliente_edit');
+        Gate::authorize('editar_clientes');
 
         return inertia('Cliente/Edit', [
             'cliente' => ClienteResource::make($cliente),
@@ -221,7 +221,7 @@ class ClienteController extends Controller
 
     public function update(UpdateClienteRequest $request, Cliente $cliente)
     {
-        Gate::authorize('cliente_edit');
+        Gate::authorize('editar_clientes');
 
         $validated = $request->validated();
 
@@ -233,8 +233,8 @@ class ClienteController extends Controller
         return redirect()->route('clientes.index');
     }
     public function destroy(Cliente $cliente)
-    {//cliente_delete
-        Gate::authorize('cliente_delete');
+    {//eliminar_clientes
+        Gate::authorize('eliminar_clientes');
 
         $cliente->delete();
 

@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Gate;
 class NotaCompraController extends Controller
 {
     public function index(Request $request)
-    {//nota_compra_access
-        Gate::authorize('nota_compra_access');
+    {//ver_notas_compras
+        Gate::authorize('ver_notas_compras');
 
         // Cargar relación con product y inventory
         $NotaComprasQuery = NotaCompra::with('paymentmethod', 'user', 'proveedor');
@@ -45,7 +45,7 @@ class NotaCompraController extends Controller
     }
     public function create()
     {
-        Gate::authorize('nota_compra_create');
+        Gate::authorize('crear_notas_compras');
 
         // Obtener todos los productos
         $suppliers = SupplierResource::collection(Supplier::all());
@@ -62,8 +62,8 @@ class NotaCompraController extends Controller
 
 
     public function store(StoreNotaCompraRequest $request)
-    {//nota_venta_create
-        Gate::authorize('nota_compra_create');
+    {//crear_notas_ventas
+        Gate::authorize('crear_notas_compras');
 
         // Valida los datos enviados desde el formulario
         $validated = $request->validated();

@@ -87,7 +87,7 @@ const deleteUser = (usersId) => {
                         <InputGroup v-model="search" type="text" autocomplete="off" placeholder="Buscar..." autofocus
                             customClasses="block" />
                         <div class="mt-4 sm:ml-16 sm:flex-none">
-                            <Link v-if="page.props.can.product_create" :href="route('users.create')"
+                            <Link v-if="page.props.can.crear_medicamentos" :href="route('users.create')"
                                 class="inline-flex items-center justify-center rounded bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700">
                             Nuevo usuario
                             </Link>
@@ -122,11 +122,11 @@ const deleteUser = (usersId) => {
                     </div>
                     <div class="col-span-1 flex items-center">
                         <!-- Table Rows -->
-                        <Link v-if="page.props.can.product_edit" :href="route('users.edit', user.id)"
+                        <Link v-if="page.props.can.editar_medicamentos" :href="route('users.edit', user.id)"
                             class="text-indigo-600 hover:text-indigo-900">
                         Edit
                         </Link>
-                        <button v-if="page.props.can.product_create" @click="deleteUser(user.id)"
+                        <button v-if="page.props.can.crear_medicamentos" @click="deleteUser(user.id)"
                             class="ml-2 text-indigo-600 hover:text-indigo-900">
                             Delete
                         </button>

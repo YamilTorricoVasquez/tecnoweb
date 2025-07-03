@@ -19,7 +19,7 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        Gate::authorize('product_access');
+        Gate::authorize('ver_medicamentos');
 
         $productsQuery = Product::query();
 
@@ -41,7 +41,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        Gate::authorize('product_create');
+        Gate::authorize('crear_medicamentos');
 
         $categories = CategoryResource::collection(Category::all());
         //  $suppliers = SupplierResource::collection(Supplier::all());
@@ -54,7 +54,7 @@ class ProductController extends Controller
 
     public function store(StoreProductRequest $request)
     {
-        Gate::authorize('product_create');
+        Gate::authorize('crear_medicamentos');
 
         $validated = $request->validated();
 
@@ -81,7 +81,7 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        Gate::authorize('product_edit');
+        Gate::authorize('editar_medicamentos');
 
         $categories = CategoryResource::collection(Category::all());
         //  $suppliers = SupplierResource::collection(Supplier::all());
@@ -95,7 +95,7 @@ class ProductController extends Controller
 
     public function update(UpdateProductRequest $request, Product $product)
     {
-        Gate::authorize('product_edit');
+        Gate::authorize('editar_medicamentos');
 
         $validated = $request->validated();
 
@@ -120,7 +120,7 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        Gate::authorize('product_create');
+        Gate::authorize('eliminar_medicamentos');
 
         if ($product->image) {
             Storage::delete('public/products/' . $product->image);

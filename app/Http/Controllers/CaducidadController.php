@@ -11,8 +11,8 @@ use Illuminate\Support\Facades\Gate;
 class CaducidadController extends Controller
 {
     public function index(Request $request)
-    {//caducidad_access
-        Gate::authorize('caducidad_access');
+    {//ver_caducidades
+        Gate::authorize('ver_caducidades');
 
         // Cargar relación con product y inventory
         //    $DetalleVentasQuery = DetalleVenta::query();

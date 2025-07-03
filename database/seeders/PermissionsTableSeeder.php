@@ -15,238 +15,219 @@ class PermissionsTableSeeder extends Seeder
     {
         $permissions = [
             [
-                'title' => 'role_create',
+                'title' => 'crear_roles',
             ],
             [
-                'title' => 'role_edit',
+                'title' => 'editar_roles',
+            ],
+           
+            [
+                'title' => 'eliminar_roles',
             ],
             [
-                'title' => 'role_show',
-            ],
-            [
-                'title' => 'role_delete',
-            ],
-            [
-                'title' => 'role_access',
-            ],
-            [
-                'title' => 'product_create',
-            ],
-            [
-                'title' => 'product_edit',
-            ],
-            [
-                'title' => 'product_show',
-            ],
-            [
-                'title' => 'product_delete',
-            ],
-            [
-                'title' => 'product_access',
-            ],
-            [
-                'title' => 'category_access',
-            ],
-            [
-                'title' => 'category_create',
-            ],
-            [
-                'title' => 'category_edit',
-            ],
-            [
-                'title' => 'category_show',
-            ],
-            [
-                'title' => 'category_delete',
-            ],
-            [
-                'title' => 'supplier_access',
-            ],
-            [
-                'title' => 'supplier_create',
-            ],
-            [
-                'title' => 'supplier_edit',
-            ],
-            [
-                'title' => 'supplier_show',
-            ],
-            [
-                'title' => 'supplier_delete',
+                'title' => 'ver_roles',
             ],
 
             [
-                'title' => 'user_access',
+                'title' => 'ver_medicamentos',
             ],
             [
-                'title' => 'user_create',
+                'title' => 'crear_medicamentos',
             ],
             [
-                'title' => 'user_edit',
+                'title' => 'editar_medicamentos',
             ],
             [
-                'title' => 'user_show',
+                'title' => 'eliminar_medicamentos',
+            ],
+            
+            [
+                'title' => 'ver_categorias',
             ],
             [
-                'title' => 'user_delete',
+                'title' => 'crear_categorias',
+            ],
+            [
+                'title' => 'editar_categorias',
+            ],
+           
+            [
+                'title' => 'eliminar_categorias',
+            ],
+
+            [
+                'title' => 'ver_proveedores',
+            ],
+            [
+                'title' => 'crear_proveedores',
+            ],
+            [
+                'title' => 'editar_proveedores',
+            ],
+           
+            [
+                'title' => 'eliminar_proveedores',
+            ],
+
+            [
+                'title' => 'ver_usuarios',
+            ],
+            [
+                'title' => 'crear_usuarios',
+            ],
+            [
+                'title' => 'editar_usuarios',
+            ],
+           
+            [
+                'title' => 'eliminar_usuarios',
             ],
 
 
             [
-                'title' => 'inventory_access',
+                'title' => 'ver_inventarios',
             ],
             [
-                'title' => 'inventory_create',
+                'title' => 'crear_inventarios',
             ],
             [
-                'title' => 'inventory_edit',
+                'title' => 'editar_inventarios',
             ],
+            
             [
-                'title' => 'inventory_show',
-            ],
-            [
-                'title' => 'inventory_delete',
+                'title' => 'eliminar_inventarios',
             ],
 
             [
-                'title' => 'paymentmethod_access',
+                'title' => 'ver_metodos_pagos',
             ],
             [
-                'title' => 'paymentmethod_create',
+                'title' => 'crear_metodos_pagos',
             ],
             [
-                'title' => 'paymentmethod_edit',
+                'title' => 'editar_metodos_pagos',
             ],
+           
             [
-                'title' => 'paymentmethod_show',
-            ],
-            [
-                'title' => 'paymentmethod_delete',
+                'title' => 'eliminar_metodos_pagos',
             ],
 
             [
-                'title' => 'reason_access',
+                'title' => 'ver_razones',
             ],
             [
-                'title' => 'reason_create',
+                'title' => 'crear_razones',
             ],
             [
-                'title' => 'reason_edit',
+                'title' => 'editar_razones',
             ],
+            
             [
-                'title' => 'reason_show',
-            ],
-            [
-                'title' => 'reason_delete',
+                'title' => 'eliminar_razones',
             ],
 
 
 
             [
-                'title' => 'inventorydetail_access',
+                'title' => 'ver_detalles_inventarios',
             ],
+          
             [
-                'title' => 'inventorydetail_create',
+                'title' => 'editar_detalles_inventarios',
             ],
-            [
-                'title' => 'inventorydetail_edit',
-            ],
-            [
-                'title' => 'inventorydetail_show',
-            ],
-            [
-                'title' => 'inventorydetail_delete',
-            ],
+
+            
 
 
 
+            // [
+            //     'title' => 'return_access',
+            // ],
+            // [
+            //     'title' => 'return_create',
+            // ],
+            // [
+            //     'title' => 'return_edit',
+            // ],
+            // [
+            //     'title' => 'return_show',
+            // ],
+            // [
+            //     'title' => 'return_delete',
+            // ],
+
             [
-                'title' => 'return_access',
-            ],
-            [
-                'title' => 'return_create',
-            ],
-            [
-                'title' => 'return_edit',
-            ],
-            [
-                'title' => 'return_show',
-            ],
-            [
-                'title' => 'return_delete',
+                'title' => 'ver_caducidades',
             ],
 
             [
-                'title' => 'caducidad_access',
-            ],
-
-            [
-                'title' => 'detalle_cantidad_venta_access',
+                'title' => 'ver_detalle_cantidad_venta',
             ],
 
 
             [
-                'title' => 'detalle_compra_access',
+                'title' => 'ver_detalle_compra',
             ],
             [
-                'title' => 'detalle_compra_create',
-            ],
-
-            [
-                'title' => 'detalle_venta_access',
-            ],
-            [
-                'title' => 'detalle_venta_create',
-            ],
-            [
-                'title' => 'detalle_venta_delete',
+                'title' => 'crear_detalle_compra',
             ],
 
             [
-                'title' => 'devolucion_access',
+                'title' => 'ver_detalle_venta',
             ],
             [
-                'title' => 'devolucion_create',
+                'title' => 'crear_detalle_venta',
             ],
             [
-                'title' => 'devolucion_edit',
+                'title' => 'eliminar_detalle_venta',
+            ],
+            
+
+            [
+                'title' => 'ver_devoluciones',
             ],
             [
-                'title' => 'devolucion_delete',
+                'title' => 'crear_devoluciones',
+            ],
+            [
+                'title' => 'editar_devoluciones',
+            ],
+            [
+                'title' => 'eliminar_devoluciones',
             ],
 
             [
-                'title' => 'inventorydetail_access',
+                'title' => 'ver_detalles_inventarios',
             ],
             [
-                'title' => 'inventorydetail_edit',
-            ],
-
-            [
-                'title' => 'nota_compra_access',
-            ],
-            [
-                'title' => 'nota_compra_create',
+                'title' => 'editar_detalles_inventarios',
             ],
 
             [
-                'title' => 'nota_venta_access',
+                'title' => 'ver_notas_compras',
             ],
             [
-                'title' => 'nota_venta_create',
+                'title' => 'crear_notas_compras',
             ],
 
             [
-                'title' => 'cliente_access',
+                'title' => 'ver_notas_ventas',
             ],
             [
-                'title' => 'cliente_create',
+                'title' => 'crear_notas_ventas',
+            ],
+
+            [
+                'title' => 'ver_clientes',
             ],
             [
-                'title' => 'cliente_edit',
+                'title' => 'crear_clientes',
             ],
             [
-                'title' => 'cliente_delete',
+                'title' => 'editar_clientes',
+            ],
+            [
+                'title' => 'eliminar_clientes',
             ],
             
 

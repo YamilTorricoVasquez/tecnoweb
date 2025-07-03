@@ -75,27 +75,17 @@ const deleteCaducidad = (caducidadId) => {
 
 <template>
 
-    <Head title="Caducidad List" />
+    <Head title="Lista de caducidad" />
     <AuthenticatedLayout>
         <DefaultLayout>
+            
             <div class="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                 <div class="pb-4 px-5">
                     <div class="flex flex-col justify-between sm:flex-row mt-4">
                         <InputGroup v-model="search" type="text" autocomplete="off" placeholder="Buscar..." autofocus
                             customClasses="block" />
-                        <!-- Table Header 
-                        <div class="mt-4 sm:ml-16 sm:flex-none">
-                            <Link v-if="page.props.can.caducidad_access" :href="route('caducidades.create')" class="
-                  inline-flex items-center justify-center rounded
-                bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm 
-                  hover:bg-indigo-700">
-                            Registra caducidad
-                            </Link>
-                        </div>-->
-
                     </div>
                 </div>
-
                 <!-- Table Header -->
                 <div class="grid grid-cols-5 border-t border-stroke py-4.5 px-4 
                dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
@@ -131,20 +121,6 @@ const deleteCaducidad = (caducidadId) => {
                     <div class="col-span-1 hidden items-center sm:flex">
                         <p class="text-sm font-medium text-black dark:text-white">{{ caducidad.producto.name }}</p>
                     </div>
-
-
-                    <!-- Table Rows 
-                    <div class="col-span-2 flex items-center">
-                        <Link v-if="page.props.can.inventory_edit" :href="route('notaventas.edit', notaventa.id)"
-                            class="text-indigo-600 hover:text-indigo-900">
-                        Edit
-                        </Link>
-                        <button v-if="page.props.can.inventory_delete" @click="deleteDevolucion(notaventa.id)"
-                            class="ml-2 text-indigo-600 hover:text-indigo-900">
-                            Delete
-                        </button>
-
-                    </div>-->
 
                 </div>
             </div>

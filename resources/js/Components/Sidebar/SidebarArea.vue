@@ -3,7 +3,8 @@ import { useSidebarStore } from '@/stores/sidebar'
 import { onClickOutside } from '@vueuse/core'
 import { ref } from 'vue'
 import SidebarItem from './SidebarItem.vue'
-
+import { usePage } from '@inertiajs/vue3'
+const page = usePage();
 const target = ref(null)
 
 const sidebarStore = useSidebarStore()
@@ -43,7 +44,8 @@ const menuGroups = ref([
                   />
                 </svg>`,
         label: 'Dashboard',
-        route: '/dashboard',
+        route: route('dashboard'),
+        //route: '/dashboard',
       }
     ]
   },
@@ -65,7 +67,9 @@ const menuGroups = ref([
 </svg>
 `,
         label: 'Medicamentos',
-        route: '/products'
+        //route: '/products'
+        route: route('products.index'),
+        permission: 'ver_medicamentos',
       },
       {
         icon: `<svg
@@ -82,7 +86,8 @@ const menuGroups = ref([
 </svg>
 `,
         label: 'Categorias',
-        route: '/categories',
+        //route: '/categories',
+        route:  route('categories.index'),
       },
       {
         icon: `<svg
@@ -99,7 +104,8 @@ const menuGroups = ref([
 </svg>
 `,
         label: 'Proveedores',
-        route: '/suppliers',
+        //route: '/suppliers',
+        route:  route('suppliers.index'),
       },
       {
         icon: `<svg
@@ -115,7 +121,8 @@ const menuGroups = ref([
     />
   </svg>`,
         label: 'Usuarios',
-        route: '/users',
+       // route: '/users',
+        route:  route('users.index'),
       },
       {
         icon: `<svg
@@ -132,7 +139,8 @@ const menuGroups = ref([
   </svg>`
         ,
         label: 'Inventario',
-        route: '/inventories',
+        //route: '/inventories',
+        route:  route('inventories.index'),
       },
       {
         icon: `<svg
@@ -149,7 +157,8 @@ const menuGroups = ref([
   </svg>`
         ,
         label: 'Metodos de pagos',
-        route: '/paymentmethods',
+       // route: '/paymentmethods',
+        route:  route('paymentmethods.index'),
       },
       {
         icon: `<svg
@@ -166,7 +175,8 @@ const menuGroups = ref([
   </svg>`
         ,
         label: 'Razon',
-        route: '/reasons',
+        //route: '/reasons',
+         route:  route('reasons.index'),
       },
       {
         icon: `<svg
@@ -183,7 +193,8 @@ const menuGroups = ref([
   </svg>`
         ,
         label: 'Detalle inventario',
-        route: '/inventorydetails',
+        //route: '/inventorydetails',
+        route:  route('inventorydetails.index'),
       },
       {
         icon: `<svg
@@ -200,7 +211,8 @@ const menuGroups = ref([
   </svg>`
         ,
         label: 'Devolucion',
-        route: '/devoluciones',
+       // route: '/devoluciones',
+         route:  route('devoluciones.index'),
       },
       {
         icon: `<svg
@@ -217,7 +229,8 @@ const menuGroups = ref([
   </svg>`
         ,
         label: 'Nota de venta',
-        route: '/notaventas',
+        //route: '/notaventas',
+          route:  route('notaventas.index'),
       },
       {
         icon: `<svg
@@ -234,7 +247,8 @@ const menuGroups = ref([
   </svg>`
         ,
         label: 'Cliente',
-        route: '/clientes',
+        //route: '/clientes',
+        route:  route('clientes.index'),
       },
       {
         icon: `<svg
@@ -250,7 +264,8 @@ const menuGroups = ref([
   />
   </svg>`,
         label: 'Detalle venta',
-        route: '/detalleventas',
+      //  route: '/detalleventas',
+        route:  route('detalleventas.index'),
       },
 
       {
@@ -267,7 +282,8 @@ const menuGroups = ref([
   />
 </svg>`,
         label: 'Nota Compra',
-        route: '/notacompras',
+        //route: '/notacompras',
+         route:  route('notacompras.index'),
       },
       {
         icon: `<svg
@@ -284,7 +300,8 @@ const menuGroups = ref([
 </svg>
 `,
         label: 'Detalle Compra',
-        route: '/detallecompras',
+      //  route: '/detallecompras',
+        route:  route('detallecompras.index'),
       },
       {
         icon: `<svg
@@ -301,7 +318,8 @@ const menuGroups = ref([
 </svg>
 `,
         label: 'Caducidad',
-        route: '/caducidades',
+        //route: '/caducidades',
+        route: route("caducidades.index"),
       },
       {
         icon: `<svg
@@ -318,7 +336,8 @@ const menuGroups = ref([
 </svg>
 `,
         label: 'Detalle Cantidad Venta',
-        route: '/detallecantidadventas',
+        //route: '/detallecantidadventas',
+         route:  route('detallecantidadventas.index'),
       },
       {
         icon: `<svg
@@ -382,7 +401,8 @@ const menuGroups = ref([
             />
           </svg>`,
         label: 'Roles',
-        route: '/roles'
+          route:  route('roles.index'),
+       // route: '/roles'
       }
 
     ]
@@ -422,8 +442,8 @@ const menuGroups = ref([
             <h3 class="mb-4 ml-4 text-sm font-medium text-bodydark2">{{ menuGroup.name }}</h3>
 
             <ul class="mb-6 flex flex-col gap-1.5">
-              <SidebarItem v-for="(menuItem, index) in menuGroup.menuItems" :item="menuItem" :key="index"
-                :index="index" />
+              <SidebarItem v-for="(menuItem, index) in 
+              menuGroup.menuItems" :item="menuItem" :key="index" :index="index" />
             </ul>
           </div>
         </template>

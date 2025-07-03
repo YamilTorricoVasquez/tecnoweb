@@ -87,7 +87,7 @@ const capitalizeWords = (input) => {
                             customClasses="block" />
                         <!-- Table Header 
                         <div class="mt-4 sm:ml-16 sm:flex-none">
-                            <Link v-if="page.props.can.inventory_create" :href="route('clientes.create')" class="
+                            <Link v-if="page.props.can.crear_inventarios" :href="route('clientes.create')" class="
                   inline-flex items-center justify-center rounded
                 bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm 
                   hover:bg-indigo-700">
@@ -123,11 +123,11 @@ const capitalizeWords = (input) => {
                     </div>
                     <!--  -->
                     <div class="col-span-1 flex items-center">
-                        <Link v-if="page.props.can.inventory_edit" :href="route('clientes.edit', cliente.id)"
+                        <Link v-if="page.props.can.editar_inventarios" :href="route('clientes.edit', cliente.id)"
                             class="text-indigo-600 hover:text-indigo-900">
                         Edit
                         </Link>
-                        <button v-if="page.props.can.inventory_delete" @click="deleteCliente(cliente.id)"
+                        <button v-if="page.props.can.eliminar_inventarios" @click="deleteCliente(cliente.id)"
                             class="ml-2 text-indigo-600 hover:text-indigo-900">
                             Delete
                         </button>

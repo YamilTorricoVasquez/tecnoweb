@@ -16,7 +16,7 @@ class RoleController extends Controller
 {
     /*  public function index(Request $request)
       {
-          Gate::authorize('role_access');
+          Gate::authorize('ver_roles');
 
           $rolesQuery = Role::query();
 
@@ -31,7 +31,7 @@ class RoleController extends Controller
       }*/
     public function index(Request $request)
     {
-        Gate::authorize('role_access');
+        Gate::authorize('ver_roles');
 
         // Filtrar los roles para excluir el ID 1
         $rolesQuery = Role::query()->where('id', '!=', 1);
@@ -58,7 +58,7 @@ class RoleController extends Controller
 
     public function create()
     {
-        Gate::authorize('role_create');
+        Gate::authorize('crear_roles');
 
         $permissions = PermissionResource::collection(Permission::all());
 
@@ -69,7 +69,7 @@ class RoleController extends Controller
 
     public function store(StoreRoleRequest $request)
     {
-        Gate::authorize('role_create');
+        Gate::authorize('crear_roles');
 
         try {
             // Crear el nuevo rol
@@ -97,7 +97,7 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
-        Gate::authorize('role_edit');
+        Gate::authorize('editar_roles');
 
         $role->load('permissions');
 
@@ -109,7 +109,7 @@ class RoleController extends Controller
 
     public function update(UpdateRoleRequest $request, Role $role)
     {
-        Gate::authorize('role_edit');
+        Gate::authorize('editar_roles');
 
         $role->update($request->validated());
         $role->permissions()->sync($request->selectedPermissions);
@@ -118,7 +118,7 @@ class RoleController extends Controller
 
     public function destroy(Role $role)
     {
-        Gate::authorize('role_delete');
+        Gate::authorize('eliminar_roles');
 
         $role->delete();
 

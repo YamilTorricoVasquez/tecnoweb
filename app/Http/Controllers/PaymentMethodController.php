@@ -13,7 +13,7 @@ class PaymentMethodController extends Controller
 {
     public function index(Request $request)
     {
-        Gate::authorize('paymentmethod_access');
+        Gate::authorize('ver_metodos_pagos');
 
         $paymentmethodQuery = PaymentMethod::query();
 
@@ -33,14 +33,14 @@ class PaymentMethodController extends Controller
     }
     public function create()
     {
-        Gate::authorize('paymentmethod_create');
+        Gate::authorize('crear_metodos_pagos');
 
         return inertia('PaymentMethod/Create');
     }
 
     public function store(StorePaymentMethodRequest $request)
     {
-        Gate::authorize('paymentmethod_create');
+        Gate::authorize('crear_metodos_pagos');
 
         $validated = $request->validated();
 
@@ -50,7 +50,7 @@ class PaymentMethodController extends Controller
     }
     public function edit(PaymentMethod $paymentmethod)
     {
-        Gate::authorize('paymentmethod_edit');
+        Gate::authorize('editar_metodos_pagos');
 
         return inertia('PaymentMethod/Edit', [
             'paymentmethod' => PaymentMethodResource::make($paymentmethod),
@@ -59,7 +59,7 @@ class PaymentMethodController extends Controller
 
     public function update(UpdatePaymentMethodRequest $request, PaymentMethod $paymentmethod)
     {
-        Gate::authorize('paymentmethod_edit');
+        Gate::authorize('editar_metodos_pagos');
 
         $validated = $request->validated();
 
@@ -72,7 +72,7 @@ class PaymentMethodController extends Controller
     }
     public function destroy(PaymentMethod $paymentmethod)
     {
-        Gate::authorize('paymentmethod_delete');
+        Gate::authorize('eliminar_metodos_pagos');
 
         $paymentmethod->delete();
 

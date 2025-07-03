@@ -108,7 +108,7 @@ const deleteRole = (id) => {
               customClasses="block" />
 
             <div class="mt-4 sm:ml-16 sm:flex-none">
-              <Link v-if="page.props.can.role_create" :href="route('roles.create')" class="
+              <Link v-if="page.props.can.crear_roles" :href="route('roles.create')" class="
               inline-flex items-center justify-center rounded
               bg-primary px-4 py-2 text-sm font-medium text-white 
               shadow-sm hover:bg-indigo-700">
@@ -137,11 +137,11 @@ const deleteRole = (id) => {
             <p class="text-sm font-medium text-black dark:text-white">{{ role.title }}</p>
           </div>
           <div class="col-span-1 flex items-center">
-            <Link v-if="page.props.can.role_edit" :href="route('roles.edit', role.id)
+            <Link v-if="page.props.can.editar_roles" :href="route('roles.edit', role.id)
               " class="text-indigo-600 hover:text-indigo-900">
             Editar
             </Link>
-            <button v-if="page.props.can.role_edit" @click="deleteRole(role.id)"
+            <button v-if="page.props.can.editar_roles" @click="deleteRole(role.id)"
               class="ml-2 text-indigo-600 hover:text-indigo-900">
               Eliminar
             </button>

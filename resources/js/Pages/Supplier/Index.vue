@@ -85,7 +85,7 @@ const deleteSupplier = (supplierId) => {
                             customClasses="block" />
                         <!-- Table Header 
                         <div class="mt-4 sm:ml-16 sm:flex-none">
-                            <Link v-if="page.props.can.supplier_create" :href="route('suppliers.create')"
+                            <Link v-if="page.props.can.crear_proveedores" :href="route('suppliers.create')"
                                 class="inline-flex items-center justify-center rounded bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700">
                             Agregar proveedor
                             </Link>
@@ -123,11 +123,11 @@ const deleteSupplier = (supplierId) => {
                         <p class="text-sm font-medium text-black dark:text-white">{{ supplier.phone }}</p>
                     </div>
                     <div class="col-span-1 flex items-center">
-                        <Link v-if="page.props.can.supplier_edit" :href="route('suppliers.edit', supplier.id)"
+                        <Link v-if="page.props.can.editar_proveedores" :href="route('suppliers.edit', supplier.id)"
                             class="text-indigo-600 hover:text-indigo-900">
                         Edit
                         </Link>
-                        <button v-if="page.props.can.supplier_delete" @click="deleteSupplier(supplier.id)"
+                        <button v-if="page.props.can.eliminar_proveedores" @click="deleteSupplier(supplier.id)"
                             class="ml-2 text-indigo-600 hover:text-indigo-900">
                             Delete
                         </button>

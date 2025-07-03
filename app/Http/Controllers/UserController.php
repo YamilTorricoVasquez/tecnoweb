@@ -18,7 +18,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        Gate::authorize('user_access');
+        Gate::authorize('ver_usuarios');
 
         // ID constante del rol "Gerente general"
         $gerenteGeneralRoleId = 1; // Reemplaza con el ID real de tu base de datos
@@ -39,7 +39,7 @@ class UserController extends Controller
     }
     /*public function index(Request $request)
     {
-        Gate::authorize('user_access');
+        Gate::authorize('ver_usuarios');
 
         $usersQuery = User::query();
 
@@ -62,7 +62,7 @@ class UserController extends Controller
     }
     /* public function create()
      {
-         Gate::authorize('user_create'); // Si tienes un Gate para controlar el acceso al registro
+         Gate::authorize('crear_usuarios'); // Si tienes un Gate para controlar el acceso al registro
  // Obtener todos los roles disponibles
          $roles = Role::all();
          return inertia('User/Create', ['roles' => $roles]); // Renderiza la vista con Inertia
@@ -70,7 +70,7 @@ class UserController extends Controller
      }*/
     public function create()
     {
-        Gate::authorize('user_create');
+        Gate::authorize('crear_usuarios');
 
         // Obtener todos los roles excepto el rol con ID 1
         $roles = Role::where('id', '!=', 1)->get();
@@ -84,7 +84,7 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         // Autorizar la acción con el Gate
-        Gate::authorize('user_edit');
+        Gate::authorize('crear_usuarios');
 
         // Validar los datos
         $validated = $request->validated();
@@ -107,7 +107,7 @@ class UserController extends Controller
     }
     public function edit(User $user)
     {
-        Gate::authorize('user_edit'); // Verifica que el usuario tenga permisos para editar
+        Gate::authorize('editar_usuarios'); // Verifica que el usuario tenga permisos para editar
 
         // Obtener todos los roles disponibles
         //  $roles = Role::all();
@@ -129,7 +129,7 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
-        Gate::authorize('user_edit'); // Verifica si el usuario tiene permisos para editar
+        Gate::authorize('editar_usuarios'); // Verifica si el usuario tiene permisos para editar
 
         // Validar los datos con UpdateUserRequest
         $validated = $request->validated();
@@ -151,7 +151,7 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        Gate::authorize('user_delete');
+        Gate::authorize('eliminar_usuarios');
 
         $user->delete();
 

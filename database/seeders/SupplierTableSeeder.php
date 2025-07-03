@@ -18,27 +18,7 @@ class SupplierTableSeeder extends Seeder
                 'name' => 'Supplier 1',
                 'nombre_empresa'=>'Pollos yuya',
                 'phone' => '098123123123'
-            ],
-            [
-                'name' => 'Supplier 2',
-                'nombre_empresa'=>'Pollos yuya',
-                'phone' => '098123123123'
-            ],
-            [
-                'name' => 'Supplier 3',
-                'nombre_empresa'=>'Pollos yuya',
-                'phone' => '098123123123'
-            ],            
-            [
-                'name' => 'Supplier 4',
-                'nombre_empresa'=>'Pollos yuya',
-                'phone' => '098123123123'
-            ],
-            [
-                'name' => 'Supplier 5',
-                'nombre_empresa'=>'Pollos yuya',
-                'phone' => '098123123123'
-            ],                        
+            ]                      
         ];
 
         Supplier::insert($suppliers);

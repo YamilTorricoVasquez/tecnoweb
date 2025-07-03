@@ -85,7 +85,7 @@ const deleteNotaCompra = (notacompraId) => {
                             customClasses="block" />
                         <!-- Table Header
                         <div class="mt-4 sm:ml-16 sm:flex-none">
-                            <Link v-if="page.props.can.nota_compra_create" :href="route('detallecompras.create')" class="
+                            <Link v-if="page.props.can.crear_notas_compras" :href="route('detallecompras.create')" class="
                   inline-flex items-center justify-center rounded
                 bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm 
                   hover:bg-indigo-700">
@@ -153,7 +153,7 @@ const deleteNotaCompra = (notacompraId) => {
                     <div class="col-span-2 flex items-center">
 
                         <!-- Table Rows
-                        <button v-if="page.props.can.inventory_delete" @click="deleteNotaVenta(notaventa.id)"
+                        <button v-if="page.props.can.eliminar_inventarios" @click="deleteNotaVenta(notaventa.id)"
                             class="ml-2 text-indigo-600 hover:text-indigo-900">
                             Delete
                         </button>-->

@@ -17,8 +17,8 @@ class PermissionRoleTableSeeder extends Seeder
         $admin_permissions = Permission::all();
 
         $user_permissions = Permission::whereIn('title', [
-            'product_access',
-            'product_create'
+            'ver_medicamentos',
+            'crear_medicamentos'
         ])->get();
 
         Role::find(1)->permissions()->attach($admin_permissions);

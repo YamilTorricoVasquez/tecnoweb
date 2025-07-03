@@ -12,7 +12,7 @@ class InventoryController extends Controller
 {
     public function index(Request $request)
     {
-        Gate::authorize('inventory_access');
+        Gate::authorize('ver_inventarios');
 
         $inventorieQuery = Inventory::query();
 
@@ -32,14 +32,14 @@ class InventoryController extends Controller
     }
     public function create()
     {
-        Gate::authorize('inventory_create');
+        Gate::authorize('crear_inventarios');
 
         return inertia('Inventory/Create');
     }
 
     public function store(StoreInventoryRequest $request)
     {
-        Gate::authorize('inventory_create');
+        Gate::authorize('crear_inventarios');
 
         $validated = $request->validated();
 
@@ -49,7 +49,7 @@ class InventoryController extends Controller
     }
     public function edit(Inventory $inventory)
     {
-        Gate::authorize('inventory_edit');
+        Gate::authorize('editar_inventarios');
 
         return inertia('Inventory/Edit', [
             'inventorie' => InventoryResource::make($inventory),
@@ -58,7 +58,7 @@ class InventoryController extends Controller
 
     public function update(UpdateInventoryRequest $request, Inventory $inventory)
     {
-        Gate::authorize('inventory_edit');
+        Gate::authorize('editar_inventarios');
 
         $validated = $request->validated();
 
@@ -71,7 +71,7 @@ class InventoryController extends Controller
     }
     public function destroy(Inventory $inventory)
     {
-        Gate::authorize('inventory_delete');
+        Gate::authorize('eliminar_inventarios');
 
         $inventory->delete();
 

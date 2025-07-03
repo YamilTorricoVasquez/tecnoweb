@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Gate;
 class DetalleVentaController extends Controller
 {
     public function index(Request $request)
-    {//detalle_venta_access
-        Gate::authorize('detalle_venta_access');
+    {//ver_detalle_venta
+        Gate::authorize('ver_detalle_venta');
 
         // Cargar relación con product y inventory
         //    $DetalleVentasQuery = DetalleVenta::query();
@@ -49,7 +49,7 @@ class DetalleVentaController extends Controller
     }
     /* public function create(Request $request)
      {
-         Gate::authorize('detalle_venta_create');
+         Gate::authorize('crear_detalle_venta');
 
          // Obtener todos los productos
          $products = ProductResource::collection(Product::all());
@@ -67,7 +67,7 @@ class DetalleVentaController extends Controller
 
     public function create(Request $request)
     {
-        Gate::authorize('detalle_venta_create');
+        Gate::authorize('crear_detalle_venta');
 
         // Obtener todos los productos
         $products = ProductResource::collection(Product::all());
@@ -87,7 +87,7 @@ class DetalleVentaController extends Controller
     public function store(StoreDetalleVentaRequest $request)
     {
         // Autorizar la acción
-        Gate::authorize('detalle_venta_create');
+        Gate::authorize('crear_detalle_venta');
 
         // Validar los datos enviados desde el formulario
         $validated = $request->validated();
@@ -118,8 +118,8 @@ class DetalleVentaController extends Controller
 
 
     /* public function store(StoreDetalleVentaRequest $request)
-     {//nota_venta_create
-         Gate::authorize('detalle_venta_create');
+     {//crear_notas_ventas
+         Gate::authorize('crear_detalle_venta');
 
          // Valida los datos enviados desde el formulario
          $validated = $request->validated();
@@ -140,7 +140,7 @@ class DetalleVentaController extends Controller
 
     public function destroy(DetalleVenta $detalleventa)
     {
-        Gate::authorize('detalle_venta_delete');
+        Gate::authorize('eliminar_detalle_venta');
 
 
 

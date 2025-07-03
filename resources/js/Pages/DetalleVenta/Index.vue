@@ -87,7 +87,7 @@ const deleteDetalleVenta = (detalleventaId) => {
                             customClasses="block" />
                         <!-- Table Header
                         <div class="mt-4 sm:ml-16 sm:flex-none">
-                            <Link v-if="page.props.can.detalle_venta_create" :href="route('detalleventas.create')"
+                            <Link v-if="page.props.can.crear_detalle_venta" :href="route('detalleventas.create')"
                                 class="
                         inline-flex items-center justify-center rounded
                         bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm 
@@ -149,11 +149,11 @@ const deleteDetalleVenta = (detalleventaId) => {
                     <!-- Table Rows -->
                     <div class="col-span-2 flex items-center">
                         <!-- Table Rows 
-                        <Link v-if="page.props.can.inventory_edit" :href="route('notaventas.edit', notaventa.id)"
+                        <Link v-if="page.props.can.editar_inventarios" :href="route('notaventas.edit', notaventa.id)"
                             class="text-indigo-600 hover:text-indigo-900">
                         Edit
                         </Link>-->
-                        <button v-if="page.props.can.detalle_venta_delete" @click="deleteDetalleVenta(detalleventa.id)"
+                        <button v-if="page.props.can.eliminar_detalle_venta" @click="deleteDetalleVenta(detalleventa.id)"
                             class="ml-2 text-indigo-600 hover:text-indigo-900">
                             Delete
                         </button>

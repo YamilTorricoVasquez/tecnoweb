@@ -85,7 +85,7 @@ const deleteDevolucion = (devolucionId) => {
                             customClasses="block" />
 
                         <div class="mt-4 sm:ml-16 sm:flex-none">
-                            <Link v-if="page.props.can.devolucion_create" :href="route('devoluciones.create')" class="
+                            <Link v-if="page.props.can.crear_devoluciones" :href="route('devoluciones.create')" class="
                   inline-flex items-center justify-center rounded
                 bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm 
                   hover:bg-indigo-700">
@@ -149,11 +149,11 @@ const deleteDevolucion = (devolucionId) => {
 
 
                     <div class="col-span-2 flex items-center">
-                        <Link v-if="page.props.can.devolucion_edit" :href="route('devoluciones.edit', devolucion.id)"
+                        <Link v-if="page.props.can.editar_devoluciones" :href="route('devoluciones.edit', devolucion.id)"
                             class="text-indigo-600 hover:text-indigo-900">
                         Edit
                         </Link>
-                        <button v-if="page.props.can.devolucion_delete" @click="deleteDevolucion(devolucion.id)"
+                        <button v-if="page.props.can.eliminar_devoluciones" @click="deleteDevolucion(devolucion.id)"
                             class="ml-2 text-indigo-600 hover:text-indigo-900">
                             Delete
                         </button>

@@ -12,7 +12,7 @@ class SupplierController extends Controller
 {
     public function index(Request $request)
     {
-        Gate::authorize('supplier_access');
+        Gate::authorize('ver_proveedores');
 
         $suppliersQuery = Supplier::query();
 
@@ -32,14 +32,14 @@ class SupplierController extends Controller
     }
     public function create()
     {
-        Gate::authorize('supplier_create');
+        Gate::authorize('crear_proveedores');
 
         return inertia('Supplier/Create');
     }
 
     public function store(StoreSupplierRequest $request)
     {
-        Gate::authorize('supplier_create');
+        Gate::authorize('crear_proveedores');
 
         $validated = $request->validated();
         $proveedorExistente = Supplier::where('name', $validated['name'])
@@ -67,7 +67,7 @@ class SupplierController extends Controller
     }
     public function edit(Supplier $supplier)
     {
-        Gate::authorize('supplier_edit');
+        Gate::authorize('editar_proveedores');
 
         return inertia('Supplier/Edit', [
             'supplier' => SupplierResource::make($supplier),
@@ -76,7 +76,7 @@ class SupplierController extends Controller
 
     public function update(UpdateSupplierRequest $request, Supplier $supplier)
     {
-        Gate::authorize('supplier_edit');
+        Gate::authorize('editar_proveedores');
 
         $validated = $request->validated();
 
@@ -91,7 +91,7 @@ class SupplierController extends Controller
 
     public function destroy(Supplier $supplier)
     {
-        Gate::authorize('supplier_delete');
+        Gate::authorize('eliminar_proveedores');
 
         $supplier->delete();
 

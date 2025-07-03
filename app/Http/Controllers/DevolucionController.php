@@ -23,7 +23,7 @@ class DevolucionController extends Controller
 
     public function index(Request $request)
     {
-        Gate::authorize('devolucion_access');
+        Gate::authorize('ver_devoluciones');
 
         // Cargar relación con product y inventory
         $DevolucionesQuery = Devolucion::with('product', 'user', 'supplier', 'reason');
@@ -82,7 +82,7 @@ class DevolucionController extends Controller
     }*/
     public function create()
     {
-        Gate::authorize('devolucion_create');
+        Gate::authorize('crear_devoluciones');
 
         // Obtener todos los productos
         $products = ProductResource::collection(Product::all());
@@ -99,7 +99,7 @@ class DevolucionController extends Controller
 
     public function store(StoreDevolucionRequest $request)
     {
-        Gate::authorize('devolucion_create');
+        Gate::authorize('crear_devoluciones');
 
         // Valida los datos enviados desde el formulario
         $validated = $request->validated();
@@ -137,7 +137,7 @@ class DevolucionController extends Controller
     }*/
     public function edit(Devolucion $devolucion)
     {
-        Gate::authorize('devolucion_edit');
+        Gate::authorize('editar_devoluciones');
         // $devolucion->load('products'); // Asegúrate de cargar la relación
         $products = ProductResource::collection(Product::all());
         $reasons = ReasonResource::collection(Reason::all());
@@ -156,7 +156,7 @@ class DevolucionController extends Controller
 
     public function update(UpdateDevolucionRequest $request, Devolucion $devolucion)
     {
-        Gate::authorize('devolucion_edit');
+        Gate::authorize('editar_devoluciones');
 
         // Validar y obtener los datos validados
         $validated = $request->validated();
@@ -176,7 +176,7 @@ class DevolucionController extends Controller
 
     public function destroy(Devolucion $devolucion)
     {
-        Gate::authorize('devolucion_delete');
+        Gate::authorize('eliminar_devoluciones');
 
 
 

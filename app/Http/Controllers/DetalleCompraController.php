@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Gate;
 class DetalleCompraController extends Controller
 {
     public function index(Request $request)
-    {//detalle_compra_access
-        Gate::authorize('detalle_compra_access');
+    {//ver_detalle_compra
+        Gate::authorize('ver_detalle_compra');
 
         // Cargar relación con product y inventory
         //    $DetalleVentasQuery = DetalleVenta::query();
@@ -46,7 +46,7 @@ class DetalleCompraController extends Controller
     }
     public function create(Request $request)
     {
-        Gate::authorize('detalle_compra_create');
+        Gate::authorize('crear_detalle_compra');
 
         // Obtener todos los productos
         //   $products = ProductResource::collection(Product::all());
@@ -73,8 +73,8 @@ class DetalleCompraController extends Controller
 
 
     public function store(StoreDetalleCompraRequest $request)
-    {//detalle_compra_create
-        Gate::authorize('detalle_compra_create');
+    {//crear_detalle_compra
+        Gate::authorize('crear_detalle_compra');
 
         // Valida los datos enviados desde el formulario
         $validated = $request->validated();

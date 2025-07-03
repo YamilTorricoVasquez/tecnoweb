@@ -85,7 +85,7 @@ const deleteNotaVenta = (notaventaId) => {
                             customClasses="block" />
                         <!-- Table Header 
                         <div class="mt-4 sm:ml-16 sm:flex-none">
-                            <Link v-if="page.props.can.cliente_create" :href="route('clientes.create')" class="
+                            <Link v-if="page.props.can.crear_clientes" :href="route('clientes.create')" class="
                             inline-flex items-center justify-center rounded
                             bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm 
                             hover:bg-indigo-700">
@@ -93,7 +93,7 @@ const deleteNotaVenta = (notaventaId) => {
                             </Link>
                         </div>
                         <div class="mt-4 sm:ml-16 sm:flex-none">
-                            <Link v-if="page.props.can.nota_venta_create" :href="route('notaventas.create')" class="
+                            <Link v-if="page.props.can.crear_notas_ventas" :href="route('notaventas.create')" class="
                             inline-flex items-center justify-center rounded
                             bg-primary px-4 py-2 text-sm font-medium text-white shadow-sm 
                             hover:bg-indigo-700">
@@ -152,13 +152,13 @@ const deleteNotaVenta = (notaventaId) => {
                     </div>
                     <!-- Table Rows -->
                     <div class="col-span-2 flex items-center">
-                        <!-- <Link v-if="page.props.can.detalle_venta_create"
+                        <!-- <Link v-if="page.props.can.crear_detalle_venta"
                             :href="route('detalleventas.create', { id_nota_venta: notaventa.id })"
                             class="text-indigo-600 hover:text-indigo-900">
                         Crear detalle de venta
                         </Link>
                         Table Rows-->
-                        <button v-if="page.props.can.inventory_delete" @click="deleteNotaVenta(notaventa.id)"
+                        <button v-if="page.props.can.eliminar_inventarios" @click="deleteNotaVenta(notaventa.id)"
                             class="ml-2 text-indigo-600 hover:text-indigo-900">
                             Delete
                         </button>

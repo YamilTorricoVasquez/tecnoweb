@@ -12,7 +12,7 @@ class InventoryDetailController extends Controller
 {
     public function index(Request $request)
     {
-        Gate::authorize('inventorydetail_access');
+        Gate::authorize('ver_detalles_inventarios');
 
         // Cargar relación con product y inventory
         $inventorydetailsQuery = InventoryDetail::with('product', 'inventory');
@@ -38,7 +38,7 @@ class InventoryDetailController extends Controller
     }
     public function edit(InventoryDetail $inventorydetail)
     {
-        Gate::authorize('inventorydetail_edit');
+        Gate::authorize('editar_detalles_inventarios');
       //  dd($inventorydeail);
         return inertia('InventoryDetail/Edit', [
             'inventorydetail' => InventoryDetailResource::make($inventorydetail),
@@ -47,7 +47,7 @@ class InventoryDetailController extends Controller
 
     public function update(UpdateInventoryDetailRequest $request, InventoryDetail $inventorydetail)
     {
-        Gate::authorize('inventorydetail_edit');
+        Gate::authorize('editar_detalles_inventarios');
 
         $validated = $request->validated();
 

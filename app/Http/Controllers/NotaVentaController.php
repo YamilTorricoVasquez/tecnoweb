@@ -17,8 +17,8 @@ use Inertia\Inertia;
 class NotaVentaController extends Controller
 {
     public function index(Request $request)
-    {//nota_venta_access
-        Gate::authorize('nota_venta_access');
+    {//ver_notas_ventas
+        Gate::authorize('ver_notas_ventas');
 
         // Cargar relación con product y inventory
         $NotaVentasQuery = NotaVenta::with('paymentmethod', 'user', 'cliente');
@@ -50,7 +50,7 @@ class NotaVentaController extends Controller
 
     /* public function create()
      {
-         Gate::authorize('nota_venta_create');
+         Gate::authorize('crear_notas_ventas');
 
          // Obtener todos los productos
          $clientes = ClienteResource::collection(Cliente::all());
@@ -65,7 +65,7 @@ class NotaVentaController extends Controller
      }*/
     public function create()
     {
-        Gate::authorize('nota_venta_create');
+        Gate::authorize('crear_notas_ventas');
 
         // Obtener todos los clientes y métodos de pago
         $clientes = ClienteResource::collection(Cliente::all());
@@ -81,7 +81,7 @@ class NotaVentaController extends Controller
 
     public function store(StoreNotaVentaRequest $request)
     {
-        Gate::authorize('nota_venta_create');
+        Gate::authorize('crear_notas_ventas');
 
         // Valida los datos enviados desde el formulario
         $validated = $request->validated();
@@ -120,7 +120,7 @@ class NotaVentaController extends Controller
 
     public function destroy(NotaVenta $notaventa)
     {
-        Gate::authorize('inventory_delete');
+        Gate::authorize('eliminar_notas_ventas');
 
         $notaventa->delete();
 

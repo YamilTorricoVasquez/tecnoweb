@@ -14,7 +14,7 @@ class ReasonController extends Controller
 {
     public function index(Request $request)
     {
-        Gate::authorize('reason_access');
+        Gate::authorize('ver_razones');
 
         $reasonQuery = Reason::query();
 
@@ -34,14 +34,14 @@ class ReasonController extends Controller
     }
     public function create()
     {
-        Gate::authorize('reason_create');
+        Gate::authorize('crear_razones');
 
         return inertia('Reason/Create');
     }
 
     public function store(StoreReasonRequest $request)
     {
-        Gate::authorize('reason_create');
+        Gate::authorize('crear_razones');
 
         $validated = $request->validated();
 
@@ -51,7 +51,7 @@ class ReasonController extends Controller
     }
     public function edit(Reason $reason)
     {
-        Gate::authorize('reason_edit');
+        Gate::authorize('editar_razones');
 
         return inertia('Reason/Edit', [
             'reason' => ReasonResource::make($reason),
@@ -60,7 +60,7 @@ class ReasonController extends Controller
 
     public function update(UpdateReasonRequest $request, reason $reason)
     {
-        Gate::authorize('reason_edit');
+        Gate::authorize('editar_razones');
 
         $validated = $request->validated();
 
@@ -73,7 +73,7 @@ class ReasonController extends Controller
     }
     public function destroy(Reason $reason)
     {
-        Gate::authorize('reason_delete');
+        Gate::authorize('eliminar_razones');
 
         $reason->delete();
 
